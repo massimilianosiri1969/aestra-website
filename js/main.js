@@ -58,3 +58,5 @@ window.addEventListener('resize',()=>{
     if(phone) phone.style.transform='none';
   }
 });
+
+const demoForm=document.getElementById("demo-form");demoForm?.addEventListener("submit",e=>{e.preventDefault();document.getElementById("form-success").style.display="block";});

@@ -17,3 +17,12 @@ heroVisual?.addEventListener('mouseleave',()=>{
   if(dash) dash.style.transform='rotateY(-4deg) rotateX(1deg)';
   if(phone) phone.style.transform='rotate(4deg)';
 });
+
+const daphneHero=document.querySelector('.daphne-hero-img');
+document.querySelector('.hero-visual')?.addEventListener('mousemove',e=>{
+  const r=e.currentTarget.getBoundingClientRect();
+  const x=(e.clientX-r.left)/r.width-.5;
+  const y=(e.clientY-r.top)/r.height-.5;
+  if(daphneHero) daphneHero.style.transform=`translate(${x*6}px,${y*5}px)`;
+});
+document.querySelector('.hero-visual')?.addEventListener('mouseleave',()=>{if(daphneHero)daphneHero.style.transform='translate(0,0)'});

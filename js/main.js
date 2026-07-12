@@ -37,3 +37,24 @@ document.querySelector('.hero-visual')?.addEventListener('mousemove',e=>{
 document.querySelector('.hero-visual')?.addEventListener('mouseleave',()=>{
   if(signatureCard) signatureCard.style.transform='translate(0,0)';
 });
+
+const isMobile=()=>window.matchMedia('(max-width:760px)').matches;
+document.querySelector('.hero-visual')?.addEventListener('mousemove',()=>{
+  if(isMobile()){
+    if(signatureCard) signatureCard.style.transform='none';
+    if(daphneHero) daphneHero.style.transform='none';
+  }
+});
+
+window.addEventListener('resize',()=>{
+  if(window.matchMedia('(max-width:760px)').matches){
+    const signatureCard=document.querySelector('.signature-card');
+    const daphneHero=document.querySelector('.daphne-hero-img');
+    const dashboard=document.querySelector('.dashboard-img');
+    const phone=document.querySelector('.phone-img');
+    if(signatureCard) signatureCard.style.transform='none';
+    if(daphneHero) daphneHero.style.transform='none';
+    if(dashboard) dashboard.style.transform='none';
+    if(phone) phone.style.transform='none';
+  }
+});

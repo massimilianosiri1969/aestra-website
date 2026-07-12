@@ -35,3 +35,14 @@
 .signature-strip>div{display:flex;align-items:center;gap:24px}.signature-strip img{width:210px}.signature-strip p{max-width:620px;margin:0;color:#776d68;font-size:13px;line-height:1.6}
 .site-header{transition:top .3s,background .3s,box-shadow .3s}
 .feature,.mini-phone,.ai-card,.dashboard-img,.phone-img{will-change:transform}
+
+/* V9 brand architecture */
+.brand-architecture{padding:90px max(5vw,32px);background:#fffaf7;border-top:1px solid #eaded9;border-bottom:1px solid #eaded9}
+.brand-architecture-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:28px;align-items:center}
+.brand-architecture article{min-height:190px;padding:26px;border:1px solid #eaded9;border-radius:22px;background:#fff;box-shadow:0 18px 40px rgba(88,55,47,.06)}
+.brand-architecture article span{display:block;color:#c8757c;font-size:9px;letter-spacing:.18em;font-weight:600}
+.brand-architecture article strong{display:block;margin:13px 0 10px;font:500 30px var(--serif);color:#2b2523}
+.brand-architecture article p{margin:0;color:#776d68;font-size:12px;line-height:1.6}
+.brand-architecture-inner>i{font-style:normal;color:#c8757c;font-size:22px}
+.company-signature{position:absolute;left:5vw;color:#e2b6a9;font:500 14px var(--serif);letter-spacing:.08em}
+.signature-card em,.daphne-signature{color:#9f8179}

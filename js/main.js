@@ -26,3 +26,14 @@ document.querySelector('.hero-visual')?.addEventListener('mousemove',e=>{
   if(daphneHero) daphneHero.style.transform=`translate(${x*6}px,${y*5}px)`;
 });
 document.querySelector('.hero-visual')?.addEventListener('mouseleave',()=>{if(daphneHero)daphneHero.style.transform='translate(0,0)'});
+
+const signatureCard=document.querySelector('.signature-card');
+document.querySelector('.hero-visual')?.addEventListener('mousemove',e=>{
+  const r=e.currentTarget.getBoundingClientRect();
+  const x=(e.clientX-r.left)/r.width-.5;
+  const y=(e.clientY-r.top)/r.height-.5;
+  if(signatureCard) signatureCard.style.transform=`translate(${x*5}px,${y*5}px)`;
+});
+document.querySelector('.hero-visual')?.addEventListener('mouseleave',()=>{
+  if(signatureCard) signatureCard.style.transform='translate(0,0)';
+});

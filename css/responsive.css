@@ -22,3 +22,17 @@
   .proof-metrics article:nth-child(2){border-right:0}
   .proof-metrics article{border-bottom:1px solid #eaded9}
 }
+
+@media(max-width:1100px){
+  .signature-card{left:-50%;top:20%;transform:scale(.92)}
+  .signature-strip{align-items:flex-start}
+}
+@media(max-width:760px){
+  .hero-daphne{width:69%;height:58%;right:-12%;top:0}
+  .signature-card{left:-38%;top:6%;min-width:215px;transform:scale(.74);transform-origin:left top}
+  .hero-visual .dashboard-img{top:48%}
+  .daphne-portrait-wrap{width:100%;left:0}
+  .signature-strip{flex-direction:column;align-items:flex-start;padding:28px 20px}
+  .signature-strip>div{flex-direction:column;align-items:flex-start;gap:12px}
+  .signature-strip img{width:190px}
+}

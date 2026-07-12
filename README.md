@@ -1,24 +1,18 @@
-# AESTRA V7 — Daphne DAS
+# AESTRA V8 Signature Edition
 
-## Identità ufficiale
+## Principali miglioramenti
+- volto di Daphne completamente libero;
+- card identitaria spostata lateralmente;
+- firma ufficiale Daphne DAS;
+- presenza più forte nella hero;
+- sezione Daphne più rassicurante e consulenziale;
+- nuova signature strip;
+- miglioramenti responsive e micro-animazioni.
 
+## Identità
 **Daphne DAS**  
 **Digital AESTRA Specialist**  
 *Powered by AESTRA Intelligence*
 
-Daphne DAS è l'assistente intelligente ufficiale di AESTRA.
-
-Il nome è integrato in modo coerente in:
-- hero;
-- badge identitario;
-- sezione dedicata;
-- pannello conversazionale;
-- microcopy;
-- descrizione SEO;
-- call to action;
-- documentazione del progetto.
-
 ## Pubblicazione
-
-Caricare tutto il contenuto nella root della repository GitHub già collegata a Vercel.
-Dopo il commit sul branch `main`, Vercel aggiornerà automaticamente il sito.
+Caricare tutti i file nella root della repository GitHub collegata a Vercel.

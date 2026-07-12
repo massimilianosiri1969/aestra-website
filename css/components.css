@@ -16,3 +16,22 @@
 .daphne-badge em{display:block;margin-top:4px;color:#9a827c;font-size:8px;font-style:normal;letter-spacing:.02em}
 .daphne-signature{margin-top:-6px;margin-bottom:18px;color:#d6b8b2;font-size:11px;letter-spacing:.04em}
 .ai-top strong{letter-spacing:.01em}
+
+/* V8 Signature Edition */
+.hero-daphne{right:-1%;top:-1%;width:43%;height:80%}
+.daphne-hero-img{object-position:54% 8%;border-radius:48% 48% 24% 24%/36% 36% 20% 20%}
+.signature-card{left:-44%;top:24%;min-width:270px;padding:15px 18px;border-radius:22px}
+.signature-card>span{width:42px;height:42px}
+.signature-card small{font-size:9px}.signature-card strong{font-size:12px}
+.signature-card b{display:flex;align-items:center;gap:7px;margin-top:7px;color:#7b716d;font-size:9px;font-weight:500}
+.signature-card b i{width:7px;height:7px;border-radius:50%;background:#74b47d;box-shadow:0 0 0 4px rgba(116,180,125,.12)}
+.hero-visual .dashboard-img{width:79%;right:17%;top:45%}
+.hero-visual .phone-img{width:20%;right:-1%;bottom:-3%}
+.hero-visual .chip-a{left:2%;top:22%}.hero-visual .chip-b{right:1%;top:42%}
+.daphne-portrait-wrap{left:-4%;width:64%}
+.daphne-portrait-img{object-position:50% 6%}
+.daphne-stage .ai-card{right:-2%;bottom:30px}
+.signature-strip{padding:26px max(5vw,32px);display:flex;align-items:center;justify-content:space-between;gap:30px;background:#fff;border-top:1px solid #eaded9;border-bottom:1px solid #eaded9}
+.signature-strip>div{display:flex;align-items:center;gap:24px}.signature-strip img{width:210px}.signature-strip p{max-width:620px;margin:0;color:#776d68;font-size:13px;line-height:1.6}
+.site-header{transition:top .3s,background .3s,box-shadow .3s}
+.feature,.mini-phone,.ai-card,.dashboard-img,.phone-img{will-change:transform}

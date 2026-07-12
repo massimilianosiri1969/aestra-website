@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 520">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#fff7f3"/></linearGradient><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#efc7b7"/><stop offset="1" stop-color="#bd6972"/></linearGradient></defs>
+<rect x="18" y="18" width="744" height="484" rx="34" fill="url(#bg)" stroke="#eaded9"/>
+<text x="54" y="76" font-family="Georgia,serif" font-size="34" fill="#2a2422">Beauty Intelligence</text>
+<text x="54" y="108" font-family="Arial" font-size="14" fill="#867873">Le opportunità più importanti di oggi</text>
+<g transform="translate(54 142)">
+ <rect width="672" height="90" rx="20" fill="#fff" stroke="#eee2dd"/>
+ <circle cx="40" cy="45" r="22" fill="#f8e7e3"/><text x="40" y="53" text-anchor="middle" font-size="24" fill="#c46f78">✦</text>
+ <text x="82" y="35" font-family="Arial" font-size="12" fill="#b37b74">CLIENTE DA RECUPERARE</text>
+ <text x="82" y="61" font-family="Arial" font-size="18" font-weight="700" fill="#2a2422">Giulia Rossi non torna da 73 giorni.</text>
+ <rect x="520" y="28" width="126" height="36" rx="18" fill="url(#g)"/><text x="583" y="51" text-anchor="middle" font-family="Arial" font-size="12" fill="#fff">Prepara azione</text>
+</g>
+<g transform="translate(54 250)">
+ <rect width="322" height="196" rx="20" fill="#fff" stroke="#eee2dd"/>
+ <text x="22" y="34" font-family="Arial" font-size="13" font-weight="700" fill="#2a2422">Agenda da ottimizzare</text>
+ <text x="22" y="61" font-family="Arial" font-size="12" fill="#867873">2 spazi liberi · 14 clienti compatibili</text>
+ <path d="M24 154 C70 140,92 116,132 124 S198 80 238 93 S276 55 298 64" fill="none" stroke="#cf7880" stroke-width="5" stroke-linecap="round"/>
+</g>
+<g transform="translate(404 250)">
+ <rect width="322" height="196" rx="20" fill="#fff" stroke="#eee2dd"/>
+ <text x="22" y="34" font-family="Arial" font-size="13" font-weight="700" fill="#2a2422">Performance centro</text>
+ <text x="22" y="61" font-family="Arial" font-size="12" fill="#867873">Marginalità media</text>
+ <text x="22" y="112" font-family="Georgia,serif" font-size="48" fill="#c56f78">+18,4%</text>
+ <text x="22" y="144" font-family="Arial" font-size="12" fill="#6b8b6f">↗ in crescita questo mese</text>
+</g>
+</svg>

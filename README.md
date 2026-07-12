@@ -1,30 +1,16 @@
-# AESTRA V5 DEFINITIVA
+# AESTRA V6
 
-Sito statico premium pronto per GitHub e Vercel.
+Evoluzione premium della homepage AESTRA.
 
-## Struttura
+## Novità
+- hero con profondità e movimento;
+- marquee animata;
+- nuova sezione Beauty Intelligence;
+- micro-interazioni sui mockup;
+- header dinamico;
+- miglioramenti mobile e responsive;
+- nessuna dipendenza e nessuna build.
 
-- `index.html`
-- `css/base.css`
-- `css/components.css`
-- `css/responsive.css`
-- `js/main.js`
-- `assets/icons/logo.svg`
-- `assets/icons/favicon.svg`
-- `assets/images/dashboard.svg`
-- `assets/images/phone.svg`
-- `assets/images/daphne-orbit.svg`
-
-## Pubblicazione su GitHub
-
-Caricare tutto il contenuto direttamente nella root della repository.
-
-## Pubblicazione su Vercel
-
-- Application Preset: Other
-- Root Directory: ./
-- Build Command: vuoto
-- Output Directory: vuoto
-- Install Command: vuoto
-
-Non sono richieste dipendenze o processi di build.
+## Pubblicazione
+Caricare tutto il contenuto nella root della repository GitHub già collegata a Vercel.
+Vercel aggiornerà automaticamente il sito.

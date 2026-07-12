@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700">
+<defs>
+<radialGradient id="core" cx=".35" cy=".28"><stop stop-color="#f8cfb8"/><stop offset=".55" stop-color="#dc8c85"/><stop offset="1" stop-color="#aa5965"/></radialGradient>
+<filter id="glow"><feGaussianBlur stdDeviation="20" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<circle cx="350" cy="350" r="280" fill="none" stroke="#ffffff" stroke-opacity=".12"/>
+<circle cx="350" cy="350" r="205" fill="none" stroke="#ffffff" stroke-opacity=".16"/>
+<circle cx="350" cy="350" r="125" fill="none" stroke="#ffffff" stroke-opacity=".2"/>
+<circle cx="350" cy="350" r="88" fill="url(#core)" filter="url(#glow)"/>
+<text x="350" y="375" text-anchor="middle" font-family="Georgia,serif" font-size="76" fill="#fff">✦</text>
+<g fill="#edaaa8">
+<circle cx="350" cy="70" r="7"/><circle cx="540" cy="174" r="6"/><circle cx="604" cy="406" r="8"/><circle cx="180" cy="552" r="6"/>
+</g>
+</svg>

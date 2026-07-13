@@ -1,9 +1,8 @@
-# AESTRA Release 1.2 — Daphne Visible
+# AESTRA Release 1.3 — Clean Daphne
 
-Correzione:
-- Daphne ora è sempre visibile;
+Correzioni:
+- nessun banner sul volto di Daphne;
+- insight spostato sopra la dashboard;
 - volto completamente libero;
-- Daphne sopra lo sfondo e dietro solo agli elementi necessari;
-- dashboard ancora protagonista;
-- smartphone riposizionato;
-- layout mobile corretto.
+- tag sotto i pulsanti correttamente separati;
+- fix anche su mobile.

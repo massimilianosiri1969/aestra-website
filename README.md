@@ -1,8 +1,17 @@
-# AESTRA Release 1.3 — Clean Daphne
+# AESTRA — Daphne Interactive V1
 
-Correzioni:
-- nessun banner sul volto di Daphne;
-- insight spostato sopra la dashboard;
-- volto completamente libero;
-- tag sotto i pulsanti correttamente separati;
-- fix anche su mobile.
+Prima implementazione funzionante della prova conversazionale.
+
+## Include
+- chat guidata con Daphne;
+- raccolta nome centro, cabine, team e gestionale;
+- risposte personalizzate;
+- dashboard aggiornata durante la conversazione;
+- scenari Agenda, Clienti inattivi, Fatturato e Team;
+- base pronta per collegamento a Base44 e a un modello AI reale.
+
+## Limite attuale
+Le risposte sono generate localmente da scenari guidati. Nessun dato viene inviato o salvato.
+
+## Vercel
+Preset Other, Root ./, nessun comando di build.

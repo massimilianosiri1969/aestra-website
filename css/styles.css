@@ -158,3 +158,23 @@
     gap:7px !important;
   }
 }
+
+/* Interactive Daphne demo */
+.interactive-demo{padding:110px max(5vw,32px);display:grid;grid-template-columns:.72fr 1.28fr;gap:70px;align-items:start;background:#fff}
+.interactive-copy p{max-width:620px;color:var(--muted);line-height:1.72}
+.demo-points{display:grid;gap:11px;margin-top:28px}.demo-points span{font-size:13px}
+.interactive-shell{display:grid;grid-template-columns:1.15fr .85fr;min-height:610px;border:1px solid var(--line);border-radius:28px;overflow:hidden;background:#fff;box-shadow:0 34px 80px rgba(82,52,45,.13)}
+.live-dashboard{padding:28px;background:linear-gradient(145deg,#fff,#fff8f5)}
+.live-dashboard-top{display:flex;justify-content:space-between;align-items:center}.live-dashboard-top small,.live-dashboard-top strong{display:block}.live-dashboard-top small{font-size:9px;letter-spacing:.15em;color:#a9837c}.live-dashboard-top strong{margin-top:5px;font:500 30px var(--serif)}
+.live-dashboard-top>span{display:flex;align-items:center;gap:8px;font-size:10px;color:#64715f}.live-dashboard-top>span i{width:8px;height:8px;border-radius:50%;background:#75b47e;box-shadow:0 0 0 5px rgba(117,180,126,.12)}
+.live-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:24px 0}.live-kpis article{padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}.live-kpis article.accent{background:#fff0ec}.live-kpis small,.live-kpis strong{display:block}.live-kpis small{font-size:8px;color:#a17c75}.live-kpis strong{margin-top:8px;font-size:22px}
+.live-insight{display:flex;gap:12px;padding:18px;border-radius:18px;background:#2a2021;color:#fff}.live-insight>span{font-size:28px;color:#efaaa5}.live-insight small,.live-insight strong{display:block}.live-insight small{font-size:8px;letter-spacing:.13em;color:#d7b4ad}.live-insight strong{margin-top:7px;line-height:1.5}
+.mini-chart{height:190px;margin-top:24px;display:flex;align-items:end;gap:11px;padding:20px;border:1px solid var(--line);border-radius:18px;background:#fff}.mini-chart div{flex:1;border-radius:8px 8px 2px 2px;background:linear-gradient(#e7a397,#c56e78);transition:height .5s ease}
+.chat-panel{display:flex;flex-direction:column;background:#2c2123;color:#fff}
+.chat-head{display:flex;align-items:center;gap:10px;padding:20px;border-bottom:1px solid rgba(255,255,255,.1)}.chat-avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#efb3a1,#bd6570)}.chat-head strong,.chat-head small{display:block}.chat-head small{font-size:9px;color:#cdb8b3}.chat-head>span{margin-left:auto;color:#9fd0a4;font-size:10px}
+.chat-body{flex:1;min-height:390px;max-height:450px;overflow:auto;padding:20px;display:flex;flex-direction:column;gap:12px}
+.message{max-width:87%;padding:14px 15px;border-radius:18px;font-size:12px;line-height:1.55}.message p{margin:0}.message small{display:block;margin-top:7px;color:#8f716c}.daphne-message{align-self:flex-start;background:#fff;color:#463a3b;border-bottom-left-radius:6px}.user-message{align-self:flex-end;background:#c87079;color:#fff;border-bottom-right-radius:6px}
+.quick-replies{display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 12px}.quick-replies button{border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:8px 11px;background:transparent;color:#fff;font-size:10px;cursor:pointer}
+.chat-input{display:flex;gap:9px;padding:16px;border-top:1px solid rgba(255,255,255,.1)}.chat-input input{flex:1;border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:12px 14px;background:rgba(255,255,255,.08);color:#fff;outline:none}.chat-input input::placeholder{color:#b7a6a2}.chat-input button{width:42px;height:42px;border:0;border-radius:50%;background:#d07a82;color:#fff;font-size:18px;cursor:pointer}
+@media(max-width:1050px){.interactive-demo{grid-template-columns:1fr}.interactive-shell{grid-template-columns:1fr}}
+@media(max-width:760px){.interactive-demo{padding:75px 20px}.interactive-shell{min-height:auto}.live-kpis{grid-template-columns:1fr 1fr}.chat-body{min-height:360px}.interactive-copy h2{font-size:52px}}

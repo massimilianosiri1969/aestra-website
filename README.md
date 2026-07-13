@@ -1,7 +1,13 @@
-# AESTRA Signature Conversation First V1.2
+# AESTRA — Daphne Strategic Memory V1
 
-Correzione principale:
-- interpretazione del nuovo messaggio prima del contesto precedente;
-- risposte specifiche per richiesta dati, metodo, privacy, tempi, costi, demo, agenda, retention, fatturato e team;
-- il contesto arricchisce la risposta senza forzarne la ripetizione;
-- la domanda “di cosa hai bisogno per analizzare il mio centro?” riceve ora un elenco completo e coerente.
+## Funzioni
+- memoria strategica visibile;
+- raccolta progressiva di centro, cabine, team, priorità, obiettivo e maturità;
+- gestione professionale degli insulti con escalation;
+- vendita progressiva in tre livelli;
+- suggerimento naturale di AESTRA dopo più interazioni;
+- risposte specifiche per valore prodotto, fatturato obiettivo, metodo, privacy, costi e demo;
+- nessun salvataggio esterno nella demo.
+
+## Nota
+Questa versione resta una demo locale basata su regole. Per risposte realmente aperte e non predefinite sarà necessario collegare un modello AI tramite backend sicuro.

@@ -124,3 +124,15 @@ const menu=document.getElementById('menu'),nav=document.getElementById('main-nav
     handleAnswer(value);
   });
 })();
+
+const daphneLauncher=document.getElementById("daphne-launcher");
+daphneLauncher?.addEventListener("click",()=>{
+  const section=document.getElementById("demo");
+  const shell=document.querySelector(".interactive-shell");
+  section?.scrollIntoView({behavior:"smooth",block:"start"});
+  setTimeout(()=>{
+    shell?.classList.add("highlight");
+    document.getElementById("chat-text")?.focus();
+    setTimeout(()=>shell?.classList.remove("highlight"),1400);
+  },650);
+});

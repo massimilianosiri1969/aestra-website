@@ -1,10 +1,7 @@
-# AESTRA Signature Conversation First V1.1
+# AESTRA Signature Conversation First V1.2
 
-Correzioni:
-- banner spostati completamente lontano dal volto di Daphne;
-- nessuno scroll automatico dopo l’invio;
-- conversazione continua nello stesso pannello;
-- memoria locale del contesto;
-- risposte differenziate per agenda, retention, fatturato e team;
-- dashboard aggiornata senza spostare l’utente;
-- domande di approfondimento quando mancano informazioni.
+Correzione principale:
+- interpretazione del nuovo messaggio prima del contesto precedente;
+- risposte specifiche per richiesta dati, metodo, privacy, tempi, costi, demo, agenda, retention, fatturato e team;
+- il contesto arricchisce la risposta senza forzarne la ripetizione;
+- la domanda “di cosa hai bisogno per analizzare il mio centro?” riceve ora un elenco completo e coerente.

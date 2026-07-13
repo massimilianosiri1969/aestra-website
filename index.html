@@ -3,219 +3,155 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AESTRA — Il sistema operativo intelligente per i centri estetici</title>
-  <meta name="description" content="AESTRA coordina agenda, clienti, marketing, magazzino, team e dati. Daphne DAS, Digital AESTRA Specialist by AESTRA Technologies, trasforma ciò che accade nel centro in decisioni concrete.">
+  <title>AESTRA — Daphne DAS lavora con il tuo centro</title>
+  <meta name="description" content="AESTRA è il sistema operativo intelligente per i centri estetici. Daphne DAS osserva, capisce e suggerisce.">
   <meta name="theme-color" content="#fff9f6">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/responsive.css"><link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-<header class="site-header">
+
+<header class="header-shell">
   <a class="brand" href="#home"><img src="assets/icons/logo.svg" alt="AESTRA"></a>
-  <nav id="nav">
-<a href="index.html">Home</a><a href="pages/piattaforma.html">Piattaforma</a><a href="pages/daphne.html">Daphne DAS</a><a href="pages/perche-aestra.html">Perché AESTRA</a><a href="pages/prezzi.html">Prezzi</a></nav>
+  <nav id="main-nav">
+    <a href="#piattaforma">Piattaforma</a>
+    <a href="#daphne">Daphne DAS</a>
+    <a href="#perche">Perché AESTRA</a>
+    <a href="#risultati">Risultati</a>
+  </nav>
   <div class="header-actions">
     <a class="login" href="https://app.aestra.it">Accedi</a>
-    <a class="button button-sm" href="pages/demo.html">Prenota una demo</a>
-    <button id="menu" class="menu" aria-label="Apri menu"><span></span><span></span></button>
+    <a class="button small" href="#demo">Richiedi una demo</a>
+    <button class="menu" id="menu-button" aria-label="Apri menu"><span></span><span></span></button>
   </div>
 </header>
 
 <main>
-<section class="hero section-pad" id="home">
-  <div class="hero-grid"></div><img class="hero-mesh" src="assets/images/hero-mesh.svg" alt="" aria-hidden="true">
+<section class="hero" id="home">
   <div class="hero-copy reveal">
-    <div class="eyebrow"><i></i> IL SISTEMA OPERATIVO DELLA BELLEZZA</div>
-    <h1>Dirigi il tuo centro.<em>AESTRA pensa al resto.</em></h1>
-    <p>AESTRA coordina agenda, clienti, team, marketing e numeri. Daphne DAS osserva, interpreta e ti suggerisce ogni giorno dove intervenire per far crescere il centro.</p>
-    <div class="hero-cta">
-      <a class="button" href="pages/demo.html">Prenota una demo <span>→</span></a>
-      <a class="ghost" href="#piattaforma"><b>▶</b> Guarda AESTRA in azione</a>
+    <span class="intro">Ciao, sono</span>
+    <h1>Daphne DAS</h1>
+    <h2>Digital <em>AESTRA</em> Specialist</h2>
+    <p>Osservo, capisco, suggerisco.<br>Ogni giorno al fianco del tuo centro<br>per aiutarti a farlo crescere.</p>
+    <div class="hero-actions">
+      <a class="button" href="#daphne">Scopri come lavoro con te <b>→</b></a>
+      <a class="secondary-link" href="#piattaforma"><span>▶</span> Guarda AESTRA in azione</a>
     </div>
-    <div class="trust-row"><span>Agenda</span><span>CRM</span><span>Marketing</span><span>BI</span><span>Daphne DAS</span></div><div class="proof">
-      <div class="faces"><span>F</span><span>M</span><span>V</span><span>A</span></div>
-      <div><strong>Progettato con chi lavora nel beauty</strong><small>Non un software generico adattato al settore.</small></div>
+    <div class="soft-proof">
+      <span>◉</span>
+      <p><strong>Una piattaforma pensata con chi lavora nel beauty.</strong><br>Non un gestionale generico adattato al settore.</p>
     </div>
   </div>
-  <div class="hero-visual reveal delay-1">
-    <div class="halo"></div>
-    <div class="hero-daphne">
-      <div class="portrait-glow"></div>
-      <img class="daphne-hero-img" src="assets/images/daphne-hero.webp" alt="Daphne DAS, Digital AESTRA Specialist">
-      <div class="daphne-badge signature-card">
-        <span>✦</span>
-        <div>
-          <small>DAPHNE DAS</small>
-          <strong>Digital AESTRA Specialist</strong>
-          <em>Powered by AESTRA Technologies</em>
-          <b><i></i> Online · analisi in tempo reale</b>
-        </div>
-      </div>
+
+  <div class="hero-center reveal delay-1">
+    <div class="portrait-light"></div>
+    <img class="daphne-main" src="assets/images/daphne-hero.webp" alt="Daphne DAS">
+    <div class="identity-card">
+      <img src="assets/icons/daphne-das.svg" alt="Daphne DAS — Digital AESTRA Specialist">
+      <span><i></i> Online · analisi in tempo reale</span>
     </div>
-    <div class="float-chip chip-a">↗ +18% fatturato mensile</div>
-    <div class="float-chip chip-b">✦ Daphne DAS ha trovato 3 opportunità</div>
-    <img class="dashboard-img" src="assets/images/dashboard.svg" alt="Dashboard AESTRA">
-    <img class="phone-img" src="assets/images/phone.svg" alt="App clienti AESTRA">
+  </div>
+
+  <div class="hero-product reveal delay-2">
+    <div class="dashboard-wrap"><img src="assets/images/dashboard.svg" alt="Dashboard AESTRA"></div>
+    <div class="phone-wrap"><img src="assets/images/phone.svg" alt="App cliente AESTRA"></div>
+    <div class="insight-pill">✦ 3 opportunità individuate oggi</div>
   </div>
 </section>
 
-<section class="marquee" aria-label="AESTRA highlights">
-      <div class="marquee-track">
-        <span>AGENDA INTELLIGENTE</span><i>✦</i><span>BEAUTY JOURNEY</span><i>✦</i><span>DAPHNE DAS</span><i>✦</i><span>MARKETING AUTOMATICO</span><i>✦</i><span>BUSINESS INTELLIGENCE</span><i>✦</i>
-        <span>AGENDA INTELLIGENTE</span><i>✦</i><span>BEAUTY JOURNEY</span><i>✦</i><span>DAPHNE DAS</span><i>✦</i><span>MARKETING AUTOMATICO</span><i>✦</i><span>BUSINESS INTELLIGENCE</span><i>✦</i>
-      </div>
-    </section>
-    <section class="manifesto reveal">
-  <span class="label">NON UN ALTRO GESTIONALE</span>
-  <h2>Un solo sistema.<br><em>Una visione completa.</em></h2>
-  <p>AESTRA collega ogni area del centro e la rende leggibile, coordinata e finalmente semplice da dirigere.</p>
-  <div class="line"></div>
+<section class="benefits">
+  <article><span>◷</span><strong>Ti fa risparmiare tempo</strong><small>ogni giorno</small></article>
+  <article><span>♡</span><strong>Ti aiuta a fidelizzare</strong><small>i tuoi clienti</small></article>
+  <article><span>◎</span><strong>Ti supporta</strong><small>nelle decisioni importanti</small></article>
+  <article><span>↗</span><strong>Ti fa crescere</strong><small>in modo semplice e costante</small></article>
 </section>
 
-<section class="platform section-pad" id="piattaforma">
-  <div class="section-head reveal">
-    <div><span class="label">LA PIATTAFORMA</span><h2>Tutto ciò che serve.<br><em>Senza frammentazioni.</em></h2></div>
-    <p>Le funzioni dialogano tra loro, condividono dati e costruiscono un ecosistema coerente.</p>
+<section class="platform" id="piattaforma">
+  <div class="platform-visual reveal">
+    <img class="platform-dashboard" src="assets/images/dashboard.svg" alt="Piattaforma AESTRA">
+    <img class="platform-phone" src="assets/images/phone.svg" alt="App AESTRA">
   </div>
-  <div class="feature-grid">
-    <article class="feature reveal"><span>01</span><b>◫</b><h3>Agenda intelligente</h3><p>Appuntamenti, cabine, risorse e operatori sempre sincronizzati.</p><a href="pages/demo.html">Scopri di più →</a></article>
-    <article class="feature reveal delay-1"><span>02</span><b>◎</b><h3>CRM e Beauty Journey</h3><p>Ogni cliente ha una storia, un valore e un percorso da far crescere.</p><a href="pages/demo.html">Scopri di più →</a></article>
-    <article class="feature reveal delay-2"><span>03</span><b>✦</b><h3>Marketing automatico</h3><p>Campagne costruite sui comportamenti reali, non sulle intuizioni.</p><a href="pages/demo.html">Scopri di più →</a></article>
-    <article class="feature reveal"><span>04</span><b>◇</b><h3>Magazzino smart</h3><p>Scorte, lotti, scadenze e riordini in un flusso semplice e leggibile.</p><a href="pages/demo.html">Scopri di più →</a></article>
-    <article class="feature reveal delay-1"><span>05</span><b>↗</b><h3>Business Intelligence</h3><p>Marginalità, performance e previsioni trasformate in decisioni.</p><a href="pages/demo.html">Scopri di più →</a></article>
-    <article class="feature reveal delay-2"><span>06</span><b>▯</b><h3>App clienti</h3><p>Prenotazioni, wallet, pacchetti, gift card e comunicazioni.</p><a href="pages/demo.html">Scopri di più →</a></article>
-  </div>
-</section>
-
-
-<section class="intelligence section-pad">
-  <div class="intelligence-visual reveal">
-    <img src="assets/images/beauty-intelligence.svg" alt="Beauty Intelligence AESTRA">
-  </div>
-  <div class="intelligence-copy reveal delay-1">
-    <span class="label">BEAUTY INTELLIGENCE</span>
-    <h2>I dati smettono di essere numeri.<br><em>Diventano direzione.</em></h2>
-    <p>AESTRA trasforma ciò che accade nel centro in indicazioni chiare: clienti da recuperare, spazi da riempire, servizi da rilanciare e margini da proteggere.</p>
-    <div class="intelligence-list">
-      <span><b>01</b> Opportunità ordinate per priorità</span>
-      <span><b>02</b> Azioni suggerite e immediatamente eseguibili</span>
-      <span><b>03</b> Analisi quotidiana senza fogli di calcolo</span>
-    </div>
+  <div class="platform-copy reveal delay-1">
+    <span class="eyebrow">TUTTO CIÒ CHE TI SERVE</span>
+    <h2>Un unico posto.<br><em>Una sola direzione.</em></h2>
+    <p>AESTRA collega ogni area del centro e la rende leggibile, coordinata e semplice da dirigere.</p>
+    <ul>
+      <li>Agenda smart con tre viste</li>
+      <li>Beauty Journey completo</li>
+      <li>Marketing automatico e mirato</li>
+      <li>Business Intelligence in tempo reale</li>
+      <li>Magazzino e riordini intelligenti</li>
+      <li>App clienti con prenotazioni e bonus</li>
+    </ul>
   </div>
 </section>
 
-<section class="daphne section-pad" id="daphne">
+<section class="daphne" id="daphne">
   <div class="daphne-copy reveal">
-    <span class="label light">DAPHNE DAS</span><div class="daphne-signature">Digital AESTRA Specialist · Powered by AESTRA Technologies</div>
-    <h2>La specialista digitale<br><em>che conosce il tuo centro.</em></h2>
-    <p>Daphne DAS non aspetta una domanda. Conosce il ritmo del centro, individua anomalie e opportunità e ti propone il passo successivo con il tono di una consulente fidata.</p>
-    <div class="checks"><span>✓ Analisi continua del centro</span><span>✓ Suggerimenti basati sui dati reali</span><span>✓ Azioni pronte da eseguire</span></div>
-    <a class="button light-button" href="pages/demo.html">Scopri Daphne DAS →</a>
+    <span class="eyebrow">LA TUA ALLEATA QUOTIDIANA</span>
+    <h2>Conosci<br><em>Daphne DAS.</em></h2>
+    <p>Sono la tua Digital AESTRA Specialist.<br>Osservo il centro, individuo ciò che conta e ti aiuto a prendere decisioni migliori.</p>
+    <a class="button" href="#demo">Scopri Daphne DAS <b>→</b></a>
   </div>
-  <div class="daphne-stage reveal delay-1">
-    <div class="daphne-portrait-wrap">
-      <img class="daphne-portrait-img" src="assets/images/daphne-portrait.webp" alt="Daphne DAS">
-      <div class="portrait-ring"></div>
-      <div class="portrait-spark spark-1">✦</div>
-      <div class="portrait-spark spark-2">✦</div>
-    </div>
-    <div class="ai-card">
-      <div class="ai-top"><strong>✦ Daphne DAS</strong><small>online</small></div>
-      <p>Ciao Francesca! Sono Daphne DAS, la tua Digital AESTRA Specialist. Ho analizzato il centro e trovato una nuova opportunità.</p>
-      <div class="ai-insight" id="ai-insight">
-        <small id="ai-label">CLIENTE DA RECUPERARE</small>
-        <strong id="ai-text">Giulia Rossi non torna da 73 giorni.</strong>
-        <button id="ai-action">Prepara messaggio</button>
-      </div>
-      <div class="ai-input">Chiedi qualcosa a Daphne DAS… <b>→</b></div>
-    </div>
+  <div class="daphne-portrait reveal delay-1">
+    <div class="ring"></div>
+    <img src="assets/images/daphne-portrait.webp" alt="Daphne DAS">
+  </div>
+  <div class="daphne-capabilities reveal delay-2">
+    <span>✓ Ti mostro cosa sta funzionando</span>
+    <span>✓ Ti avviso prima dei problemi</span>
+    <span>✓ Ti suggerisco azioni concrete</span>
+    <span>✓ Imparo dal tuo centro ogni giorno</span>
+    <span>✓ Sono sempre al tuo fianco</span>
   </div>
 </section>
 
-<section class="client-app section-pad" id="app-clienti">
-  <div class="client-copy reveal">
-    <span class="label">APP CLIENTI</span>
-    <h2>Il tuo centro,<br><em>sempre nelle loro mani.</em></h2>
-    <p>Un’app coordinata con il tuo brand, pensata per aumentare frequenza, fedeltà e valore di ogni cliente.</p>
-    <div class="benefits"><span>◷ Prenotazioni 24/7</span><span>✦ Pacchetti e gift card</span><span>▣ Wallet e crediti</span><span>◇ Dati protetti</span></div>
+<section class="why" id="perche">
+  <div class="why-copy reveal">
+    <span class="eyebrow">PIÙ DI UN GESTIONALE</span>
+    <h2>Un nuovo modo<br><em>di lavorare.</em></h2>
+    <p>Più semplice, più umano e più vicino alla realtà quotidiana di un centro estetico.</p>
   </div>
-  <div class="phone-wall reveal delay-1">
-    <div class="mini-phone tilt-left"><h4>PRENOTA</h4><strong>Maggio</strong><p>L M M G V S D<br>5 6 7 8 9 10 11<br>12 13 14 15 16 17 18</p><button>10:30</button></div>
-    <div class="mini-phone"><h4>WALLET</h4><div class="wallet"><small>Credito disponibile</small><strong>€120,00</strong></div><p>+ €50,00 Ricarica</p><p>- €35,00 Trattamento</p></div>
-    <div class="mini-phone tilt-right"><h4>PER TE</h4><div class="promo"><strong>-20%</strong><span>Trattamento corpo</span><small>Valido fino al 30 maggio</small></div><button>Scopri</button></div>
-  </div>
-</section>
-
-<section class="social-proof section-pad">
-  <div class="proof-heading reveal">
-    <span class="label">SCELTO DAI CENTRI CHE VOGLIONO CRESCERE</span>
-    <h2>Più di un gestionale.<br><em>Un partner strategico.</em></h2>
-  </div>
-  <div class="logo-strip reveal delay-1">
-    <span>BEAUTYLINE</span><span>ARMONIA</span><span>ESSENTIA</span><span>LUMIÈRE</span><span>VENERE</span><span>BIANCA</span>
-  </div>
-  <div class="proof-metrics reveal delay-2">
-    <article><strong>4.9/5</strong><span>valutazione media</span></article>
-    <article><strong>+2.500</strong><span>centri estetici</span></article>
-    <article><strong>+35%</strong><span>crescita media</span></article>
-    <article><strong>-40%</strong><span>tempo amministrativo</span></article>
+  <div class="steps">
+    <article class="reveal"><b>01</b><strong>Accoglie</strong><span>ogni cliente</span></article>
+    <article class="reveal delay-1"><b>02</b><strong>Analizza</strong><span>e comprende</span></article>
+    <article class="reveal delay-2"><b>03</b><strong>Suggerisce</strong><span>le azioni giuste</span></article>
+    <article class="reveal"><b>04</b><strong>Fa crescere</strong><span>il tuo centro</span></article>
   </div>
 </section>
 
 <section class="results" id="risultati">
-  <span class="label">IL VALORE DI AESTRA</span>
-  <h2>Più controllo oggi.<br><em>Più crescita domani.</em></h2>
-  <div class="stats"><article><strong>1</strong><span>ecosistema unico</span></article><article><strong>24/7</strong><span>prenotazioni e assistenza digitale</span></article><article><strong>360°</strong><span>visione completa del cliente</span></article><article><strong>AI</strong><span>decisioni guidate dai dati</span></article></div>
-</section>
-
-
-
-<section class="brand-architecture">
-  <div class="brand-architecture-inner">
-    <article>
-      <span>AZIENDA</span>
-      <strong>AESTRA Technologies</strong>
-      <p>La realtà che sviluppa l’ecosistema, la tecnologia e la visione.</p>
-    </article>
-    <i>→</i>
-    <article>
-      <span>PIATTAFORMA</span>
-      <strong>AESTRA</strong>
-      <p>Il sistema operativo intelligente per i centri estetici.</p>
-    </article>
-    <i>→</i>
-    <article>
-      <span>ASSISTENTE DIGITALE</span>
-      <strong>Daphne DAS</strong>
-      <p>Digital AESTRA Specialist, powered by AESTRA Technologies.</p>
-    </article>
+  <div class="results-copy reveal">
+    <span class="eyebrow light">RISULTATI CONCRETI</span>
+    <h2>Il tuo centro.<br><em>Il nostro obiettivo.</em></h2>
+  </div>
+  <div class="metrics">
+    <article class="reveal"><strong>+28%</strong><span>Fatturato medio</span><small>nei centri clienti</small></article>
+    <article class="reveal delay-1"><strong>−31%</strong><span>Tempo operativo</span><small>giornaliero</small></article>
+    <article class="reveal delay-2"><strong>+43%</strong><span>Fidelizzazione</span><small>clienti</small></article>
   </div>
 </section>
 
-<section class="signature-strip">
-  <div>
-    <img src="assets/icons/daphne-das.svg" alt="Daphne DAS">
-    <p>Più di un assistente. La presenza intelligente che accompagna ogni decisione del centro.</p>
+<section class="final-cta" id="demo">
+  <div class="reveal">
+    <span class="eyebrow">VUOI VEDERLO DAL VIVO?</span>
+    <h2>Scopri come Daphne<br><em>può trasformare il tuo centro.</em></h2>
+    <p>Richiedi una demo personalizzata e guarda AESTRA lavorare sui tuoi processi.</p>
   </div>
-  <a class="button" href="pages/demo.html">Conosci Daphne DAS →</a>
-</section>
-
-<section class="cta" id="demo">
-  <div class="cta-glow"></div>
-  <img src="assets/icons/logo.svg" alt="AESTRA">
-  <h2>Il centro estetico del futuro<br>può iniziare oggi.</h2>
-  <p>Scopri come AESTRA può adattarsi al tuo centro con una demo personalizzata e una lettura concreta del tuo modo di lavorare.</p>
-  <a class="button light-button" href="pages/demo.html">Prenota la tua demo →</a>
-  <small>Demo gratuita · Nessun impegno · Supporto dedicato</small>
+  <a class="button" href="mailto:info@aestra.it">Richiedi la tua demo <b>→</b></a>
 </section>
 </main>
 
-<footer><img src="assets/icons/logo.svg" alt="AESTRA"><p>AESTRA è il sistema operativo intelligente per i centri estetici, sviluppato da AESTRA Technologies.</p><div><a href="#">Privacy</a><a href="#">Termini</a><a href="https://app.aestra.it">Accedi</a></div></footer>
+<footer>
+  <div><strong>AESTRA Technologies</strong><span>Il sistema operativo intelligente per i centri estetici.</span></div>
+  <nav><a href="#">Privacy</a><a href="#">Termini</a><a href="https://app.aestra.it">Accedi</a></nav>
+</footer>
+
 <script src="js/main.js"></script>
 </body>
 </html>

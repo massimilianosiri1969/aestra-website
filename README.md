@@ -1,13 +1,18 @@
-# AESTRA — Daphne Strategic Memory V1
+# AESTRA — Daphne Public Sales V1
+
+## Obiettivo
+La versione pubblica di Daphne non sostituisce la consulenza interna al software. Comprende il centro, mostra il metodo e accompagna verso demo, prova o acquisto.
 
 ## Funzioni
-- memoria strategica visibile;
-- raccolta progressiva di centro, cabine, team, priorità, obiettivo e maturità;
-- gestione professionale degli insulti con escalation;
-- vendita progressiva in tre livelli;
-- suggerimento naturale di AESTRA dopo più interazioni;
-- risposte specifiche per valore prodotto, fatturato obiettivo, metodo, privacy, costi e demo;
+- massimo 10 scambi;
+- memoria strategica limitata;
+- domande e risposte orientate alla conversione;
+- tre livelli commerciali progressivi;
+- chiusura elegante della conversazione;
+- gestione professionale degli insulti;
+- CTA demo e prova AESTRA;
 - nessun salvataggio esterno nella demo.
 
-## Nota
-Questa versione resta una demo locale basata su regole. Per risposte realmente aperte e non predefinite sarà necessario collegare un modello AI tramite backend sicuro.
+## Messaggio
+Sul sito Daphne ti dimostra come pensa.
+Dentro AESTRA lavora davvero per te.

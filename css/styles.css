@@ -225,3 +225,200 @@
   }
   .daphne-launcher small{display:none}
 }
+
+/* Release 1.2 Signature — Daphne fully integrated, chat as headline innovation */
+
+/* Hero Daphne: no visible rectangle, no hard container perception */
+.daphne-layer{
+  overflow:visible !important;
+  background:none !important;
+}
+.daphne-layer:before{
+  content:"";
+  position:absolute;
+  inset:2% -16% 5% -10%;
+  z-index:-2;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 55% 34%,rgba(255,255,255,.98) 0 18%,rgba(241,197,187,.42) 45%,transparent 72%);
+  filter:blur(5px);
+}
+.daphne-layer:after{
+  content:"";
+  position:absolute;
+  inset:auto -6% 0 -5%;
+  height:32%;
+  z-index:-1;
+  background:linear-gradient(to top,rgba(255,250,247,.94),rgba(255,250,247,0));
+  pointer-events:none;
+}
+.daphne-layer img{
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  clip-path:ellipse(58% 52% at 52% 42%) !important;
+  -webkit-mask-image:
+    radial-gradient(ellipse 64% 72% at 53% 42%,#000 58%,rgba(0,0,0,.92) 69%,rgba(0,0,0,.28) 84%,transparent 100%) !important;
+  mask-image:
+    radial-gradient(ellipse 64% 72% at 53% 42%,#000 58%,rgba(0,0,0,.92) 69%,rgba(0,0,0,.28) 84%,transparent 100%) !important;
+  filter:saturate(.96) contrast(1.015) drop-shadow(0 26px 38px rgba(105,62,52,.12)) !important;
+}
+.daphne-nameplate{
+  position:absolute;
+  right:3%;
+  bottom:6%;
+  z-index:9;
+  padding:12px 0 10px 14px;
+  border-left:2px solid var(--rose);
+  background:linear-gradient(90deg,rgba(255,250,247,.88),rgba(255,250,247,0));
+}
+.daphne-nameplate strong,.daphne-nameplate span{display:block}
+.daphne-nameplate strong{font:500 30px var(--serif);color:var(--rose-dark)}
+.daphne-nameplate span{font-size:10px;color:var(--muted);letter-spacing:.04em}
+
+/* Make the interactive area the second major hero of the page */
+.interactive-demo-signature{
+  position:relative;
+  overflow:hidden;
+  padding-top:130px !important;
+  padding-bottom:130px !important;
+  background:
+    radial-gradient(circle at 78% 22%,rgba(238,164,154,.20),transparent 28%),
+    linear-gradient(145deg,#fffdfb,#fff5f1 62%,#fffaf7) !important;
+}
+.interactive-demo-signature:before{
+  content:"DAPHNE";
+  position:absolute;
+  right:-2%;
+  top:1%;
+  font:500 clamp(110px,15vw,240px)/1 var(--serif);
+  color:rgba(202,114,122,.045);
+  letter-spacing:-.06em;
+  pointer-events:none;
+}
+.interactive-demo-signature .interactive-copy{
+  position:sticky;
+  top:120px;
+}
+.interactive-demo-signature .interactive-copy h2{
+  font-size:clamp(56px,5.4vw,84px);
+  max-width:760px;
+}
+.interactive-demo-signature .interactive-copy>p{
+  font-size:17px;
+}
+.revolution-badge{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  margin:28px 0 24px;
+  padding:16px 18px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(255,255,255,.82);
+  box-shadow:0 18px 40px rgba(82,52,45,.08);
+}
+.revolution-badge>span{
+  width:42px;
+  height:42px;
+  flex:0 0 42px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(145deg,#efb3a1,#bd6570);
+  color:#fff;
+  font-size:20px;
+}
+.revolution-badge strong,.revolution-badge small{display:block}
+.revolution-badge strong{font-size:13px}
+.revolution-badge small{margin-top:4px;color:var(--muted);font-size:10px}
+
+.interactive-demo-signature .interactive-shell{
+  min-height:690px;
+  border-color:rgba(202,114,122,.22);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.7) inset,
+    0 38px 100px rgba(116,65,57,.17);
+  transform:perspective(1500px) rotateY(-1.3deg);
+}
+.interactive-demo-signature .chat-panel{
+  background:
+    radial-gradient(circle at 50% 0,rgba(201,111,120,.16),transparent 34%),
+    #251d1f;
+}
+.interactive-demo-signature .chat-head{
+  padding-top:24px;
+  padding-bottom:24px;
+}
+.interactive-demo-signature .chat-avatar{
+  width:46px;
+  height:46px;
+  font-size:21px;
+  box-shadow:0 0 0 6px rgba(208,122,130,.10);
+}
+.interactive-demo-signature .chat-body{
+  min-height:465px;
+}
+.interactive-demo-signature .live-dashboard{
+  position:relative;
+}
+.interactive-demo-signature .live-dashboard:after{
+  content:"Daphne sta lavorando sul tuo centro";
+  position:absolute;
+  left:28px;
+  bottom:18px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:#2b2022;
+  color:#fff;
+  font-size:9px;
+  letter-spacing:.03em;
+}
+
+/* Launcher stronger but elegant */
+.daphne-launcher{
+  padding:13px 18px !important;
+  box-shadow:0 20px 55px rgba(126,70,63,.23) !important;
+}
+.daphne-launcher:after{
+  content:"Provala ora";
+  position:absolute;
+  top:-8px;
+  right:8px;
+  padding:4px 7px;
+  border-radius:999px;
+  background:#c96f78;
+  color:#fff;
+  font-size:7px;
+  letter-spacing:.05em;
+}
+
+@media(max-width:1050px){
+  .interactive-demo-signature .interactive-copy{position:static}
+  .interactive-demo-signature .interactive-shell{transform:none}
+}
+@media(max-width:760px){
+  .daphne-layer img{
+    clip-path:ellipse(62% 54% at 50% 40%) !important;
+    -webkit-mask-image:
+      radial-gradient(ellipse 68% 72% at 50% 41%,#000 57%,rgba(0,0,0,.9) 69%,rgba(0,0,0,.22) 84%,transparent 100%) !important;
+    mask-image:
+      radial-gradient(ellipse 68% 72% at 50% 41%,#000 57%,rgba(0,0,0,.9) 69%,rgba(0,0,0,.22) 84%,transparent 100%) !important;
+  }
+  .daphne-nameplate{
+    left:4%;
+    right:auto;
+    bottom:4%;
+  }
+  .interactive-demo-signature{
+    padding-top:85px !important;
+    padding-bottom:85px !important;
+  }
+  .interactive-demo-signature .interactive-copy h2{
+    font-size:52px;
+  }
+  .interactive-demo-signature .live-dashboard:after{
+    left:16px;
+    bottom:12px;
+  }
+}

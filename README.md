@@ -1,8 +1,13 @@
-# AESTRA — Daphne Interactive V1.1
+# AESTRA — Daphne Interactive V1.2 Signature
 
-Correzioni:
-- CTA “Parla con Daphne” nella hero;
-- pulsante flottante sempre visibile;
-- scroll automatico alla chat;
-- evidenziazione del pannello;
-- focus automatico sul campo di testo.
+## Modifiche principali
+- Daphne senza rettangolo percepibile;
+- fusione nella luce della hero tramite maschera morbida;
+- nameplate minimale, senza card;
+- sezione “Parla con Daphne” trasformata nella seconda hero della pagina;
+- messaggio commerciale più forte;
+- chat e dashboard rese più immersive;
+- pulsante flottante più evidente.
+
+## Stato
+Le risposte restano guidate localmente. Il collegamento a Base44 e a un modello AI reale viene nella fase successiva.

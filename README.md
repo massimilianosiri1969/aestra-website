@@ -1,3 +1,2 @@
-# AESTRA Release 1 — Homepage Test
-
-Prima pagina testabile. Preset Vercel: Other; Root ./; nessun comando di build.
+# AESTRA Release 1.1 WOW
+Daphne completamente visibile, dashboard protagonista, hero più dinamica e mobile dedicato.

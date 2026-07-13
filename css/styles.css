@@ -15,3 +15,89 @@
 
 @media(max-width:1050px){.topbar nav{display:none}.hero-copy{width:100%;max-width:760px}.daphne-presence{position:relative;right:auto;top:auto;width:100%;height:650px;margin-top:20px}.signature-hero{padding-bottom:60px}.conversation-stage{margin-top:20px}.living-dashboard{grid-template-columns:1fr}.why-grid{grid-template-columns:1fr}.prompt-box{grid-template-columns:1fr}}
 @media(max-width:760px){.topbar{top:9px;height:60px}.topbar nav,.actions>a:first-child{display:none}.signature-hero{padding:115px 20px 55px;min-height:auto}.hero-copy{padding-top:30px}.hero-copy h1{font-size:58px}.hero-copy p{font-size:16px}.daphne-presence{height:560px;margin-top:10px}.thought{font-size:8px}.conversation-stage{padding:24px 16px;border-radius:24px}.conversation-title h2{font-size:48px}.prompt-box textarea{font-size:15px}.living-dashboard,.why-daphne{padding-left:20px;padding-right:20px}.kpis{grid-template-columns:1fr 1fr}.dashboard-main{grid-template-columns:1fr}.dashboard-shell{padding:18px}.final-cta h2{font-size:52px}}
+
+/* Conversation First V1.1 fixes */
+
+/* Keep every floating thought away from Daphne's forehead and eyes */
+.thought-a{
+  left:-2% !important;
+  top:8% !important;
+}
+.thought-b{
+  right:-1% !important;
+  top:62% !important;
+}
+.thought-c{
+  left:0 !important;
+  bottom:4% !important;
+}
+
+/* Conversation log */
+.response-body{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  max-height:330px;
+  overflow:auto;
+  scroll-behavior:smooth;
+}
+.conversation-entry{
+  max-width:88%;
+  padding:14px 16px;
+  border-radius:18px;
+  font-size:13px;
+  line-height:1.6;
+}
+.conversation-entry span{
+  display:block;
+  margin-bottom:5px;
+  font-size:9px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.conversation-entry p{
+  margin:0;
+}
+.daphne-entry{
+  align-self:flex-start;
+  background:rgba(255,255,255,.09);
+  border-bottom-left-radius:6px;
+}
+.daphne-entry span{
+  color:#efb3aa;
+}
+.user-entry{
+  align-self:flex-end;
+  background:#c9717a;
+  border-bottom-right-radius:6px;
+}
+.user-entry span{
+  color:#ffe9e4;
+}
+
+/* Keep the prompt stage stable during interaction */
+.conversation-stage{
+  scroll-margin-top:120px;
+}
+.prompt-box button[disabled]{
+  opacity:.6;
+  cursor:wait;
+}
+
+@media(max-width:760px){
+  .thought-a{
+    left:1% !important;
+    top:4% !important;
+  }
+  .thought-b{
+    right:0 !important;
+    top:70% !important;
+  }
+  .thought-c{
+    left:2% !important;
+    bottom:2% !important;
+  }
+  .response-body{
+    max-height:300px;
+  }
+}

@@ -1,11 +1,3 @@
-# AESTRA — Hero Redesign
+# AESTRA Release 1 — Homepage Test
 
-Correzione della hero:
-- software protagonista;
-- Daphne dietro e lateralmente alla dashboard;
-- volto completamente libero;
-- nessuna card sul viso;
-- layout mobile separato.
-
-## Vercel
-Preset Other, Root ./, nessun comando di build.
+Prima pagina testabile. Preset Vercel: Other; Root ./; nessun comando di build.

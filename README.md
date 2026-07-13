@@ -1,13 +1,19 @@
-# AESTRA — Daphne Interactive V1.2 Signature
+# AESTRA Signature — Conversation First
 
-## Modifiche principali
-- Daphne senza rettangolo percepibile;
-- fusione nella luce della hero tramite maschera morbida;
-- nameplate minimale, senza card;
-- sezione “Parla con Daphne” trasformata nella seconda hero della pagina;
-- messaggio commerciale più forte;
-- chat e dashboard rese più immersive;
-- pulsante flottante più evidente.
+Pagina sperimentale completamente nuova.
 
-## Stato
-Le risposte restano guidate localmente. Il collegamento a Base44 e a un modello AI reale viene nella fase successiva.
+## Concetto
+Non stai acquistando un software. Stai assumendo Daphne.
+
+## Funzioni
+- Daphne integrata nella hero senza contenitore rettangolare;
+- grande campo conversazionale in primo piano;
+- suggerimenti cliccabili;
+- risposte dinamiche locali;
+- dashboard che cambia in base alla conversazione;
+- responsive desktop e mobile.
+
+## Vercel
+Preset: Other
+Root Directory: ./
+Nessun comando di build.

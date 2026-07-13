@@ -1,138 +1,66 @@
-const menu=document.getElementById('menu'),nav=document.getElementById('main-nav');menu?.addEventListener('click',()=>nav.classList.toggle('open'));const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-/* Guided interactive Daphne prototype */
-(() => {
-  const form = document.getElementById("chat-form");
-  if (!form) return;
 
-  const input = document.getElementById("chat-text");
-  const body = document.getElementById("chat-body");
-  const replies = document.getElementById("quick-replies");
-  const centerName = document.getElementById("center-name");
-  const cabins = document.getElementById("kpi-cabins");
-  const team = document.getElementById("kpi-team");
-  const software = document.getElementById("kpi-software");
-  const opportunities = document.getElementById("kpi-opportunities");
-  const insight = document.getElementById("dashboard-insight");
+const form=document.getElementById("prompt-form");
+const input=document.getElementById("prompt-input");
+const response=document.getElementById("response-text");
+const buttons=document.querySelectorAll("[data-prompt]");
+const insightTitle=document.getElementById("insight-title");
+const insightCopy=document.getElementById("insight-copy");
+const opportunities=document.getElementById("opportunities");
+const clients=document.getElementById("clients");
+const spaces=document.getElementById("spaces");
+const impact=document.getElementById("impact");
 
-  const state = { step: 0, center: "", cabins: "", team: "", software: "" };
+buttons.forEach(btn=>btn.addEventListener("click",()=>{
+  input.value=btn.dataset.prompt;
+  input.focus();
+}));
 
-  const addMessage = (text, who = "daphne") => {
-    const item = document.createElement("div");
-    item.className = `message ${who === "user" ? "user-message" : "daphne-message"}`;
-    item.innerHTML = `<p>${text}</p>`;
-    body.appendChild(item);
-    body.scrollTop = body.scrollHeight;
-  };
+function analyse(text){
+  const value=text.toLowerCase();
+  let reply="Ho iniziato a leggere il tuo centro. Vedo già alcune aree su cui potremmo lavorare insieme.";
+  let title="Prima analisi completata.";
+  let copy="Ho individuato opportunità operative da approfondire.";
+  let opp=4, cli=12, spa=2, imp="+18%";
 
-  const setReplies = (items = []) => {
-    replies.innerHTML = "";
-    items.forEach(label => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.textContent = label;
-      button.addEventListener("click", () => handleAnswer(label));
-      replies.appendChild(button);
-    });
-  };
+  if(value.includes("4 cabine") || value.includes("cabine")){
+    reply="Con quattro cabine, la prima cosa che controllerei è la saturazione reale per fascia oraria. Potresti avere spazi vuoti nascosti anche con un’agenda apparentemente piena.";
+    title="La saturazione non è uniforme.";
+    copy="Vedo margine per distribuire meglio appuntamenti e trattamenti ad alta marginalità.";
+    opp=6; spa=4; imp="+22%";
+  }
+  if(value.includes("primo trattamento") || value.includes("perdo")){
+    reply="Il problema probabilmente non è il primo trattamento, ma ciò che accade nelle 72 ore successive. Creerei un percorso automatico di follow-up e ritorno.";
+    title="Il punto critico è dopo il primo trattamento.";
+    copy="Daphne suggerisce un percorso di riattivazione entro 7 giorni.";
+    cli=27; opp=7; imp="+31%";
+  }
+  if(value.includes("fatturato") || value.includes("prezzi")){
+    reply="Per aumentare il fatturato senza alzare i prezzi lavorerei su tre leve: riempimento agenda, vendita di percorsi e recupero clienti inattivi.";
+    title="Tre leve di crescita senza aumentare i prezzi.";
+    copy="Agenda, percorsi e riattivazione sono le aree con impatto più rapido.";
+    opp=8; cli=19; spa=3; imp="+26%";
+  }
 
-  const updateDashboard = () => {
-    centerName.textContent = state.center || "Il tuo centro";
-    cabins.textContent = state.cabins || "—";
-    team.textContent = state.team || "—";
-    software.textContent = state.software || "—";
+  response.textContent=reply;
+  insightTitle.textContent=title;
+  insightCopy.textContent=copy;
+  opportunities.textContent=opp;
+  clients.textContent=cli;
+  spaces.textContent=spa;
+  impact.textContent=imp;
 
-    const c = parseInt(state.cabins) || 1;
-    const t = parseInt(state.team) || 1;
-    const score = Math.max(3, Math.min(12, c + t + (state.software === "No" ? 3 : 1)));
-    opportunities.textContent = score;
-
-    if (state.step >= 4) {
-      insight.textContent = `${state.center}: vedo margine per recuperare clienti inattivi, riempire gli spazi liberi e ridurre le attività manuali del team.`;
-    }
-  };
-
-  const askNext = () => {
-    if (state.step === 1) {
-      addMessage(`Piacere di conoscerti. Quante cabine ha ${state.center}?`);
-      setReplies(["1", "2", "3", "4", "5+"]);
-    } else if (state.step === 2) {
-      addMessage("Quante persone lavorano nel centro, compresa la titolare?");
-      setReplies(["1", "2", "3", "4", "5", "6+"]);
-    } else if (state.step === 3) {
-      addMessage("Utilizzate già un gestionale?");
-      setReplies(["Sì", "No"]);
-    } else if (state.step === 4) {
-      addMessage(`Ho una prima lettura di ${state.center}. Vedo almeno ${opportunities.textContent} opportunità operative. Da dove vuoi iniziare?`);
-      setReplies(["Agenda vuota", "Clienti inattivi", "Fatturato", "Team"]);
-    }
-  };
-
-  const finalResponse = answer => {
-    const responses = {
-      "Agenda vuota": `Con ${state.cabins} cabine e ${state.team} persone, inizierei dagli spazi liberi ricorrenti. AESTRA può trovare i clienti compatibili e preparare una campagna mirata.`,
-      "Clienti inattivi": `Cercherei subito chi non torna da 60–90 giorni, distinguendo valore, trattamenti preferiti e probabilità di risposta.`,
-      "Fatturato": `Separerei crescita apparente e marginalità reale. Ti mostrerei quali trattamenti generano valore e quali occupano agenda senza rendere abbastanza.`,
-      "Team": `Analizzerei saturazione, produttività e capacità di proposta di ogni operatrice, senza trasformare i numeri in una classifica punitiva.`
-    };
-    addMessage(responses[answer] || "Posso analizzare questa situazione e proporti un piano operativo.", "daphne");
-    setReplies(["Richiedi una demo", "Ricomincia"]);
-  };
-
-  const handleAnswer = value => {
-    addMessage(value, "user");
-    setReplies([]);
-
-    if (state.step === 0) {
-      state.center = value.trim() || "Il tuo centro";
-      state.step = 1;
-      updateDashboard();
-      setTimeout(askNext, 350);
-    } else if (state.step === 1) {
-      state.cabins = value;
-      state.step = 2;
-      updateDashboard();
-      setTimeout(askNext, 350);
-    } else if (state.step === 2) {
-      state.team = value;
-      state.step = 3;
-      updateDashboard();
-      setTimeout(askNext, 350);
-    } else if (state.step === 3) {
-      state.software = value;
-      state.step = 4;
-      updateDashboard();
-      setTimeout(askNext, 350);
-    } else if (value === "Ricomincia") {
-      state.step = 0; state.center = ""; state.cabins = ""; state.team = ""; state.software = "";
-      body.innerHTML = "";
-      addMessage("Ciao! Sono Daphne. Come si chiama il tuo centro?");
-      updateDashboard();
-    } else if (value === "Richiedi una demo") {
-      addMessage("Perfetto. Nella versione collegata a Base44 aprirò il modulo demo con i dati che mi hai già fornito.");
-      insight.textContent = "Profilo pronto per una demo personalizzata.";
-      setReplies([]);
-    } else {
-      finalResponse(value);
-    }
-  };
-
-  form.addEventListener("submit", event => {
-    event.preventDefault();
-    const value = input.value.trim();
-    if (!value) return;
-    input.value = "";
-    handleAnswer(value);
+  document.querySelectorAll(".chart div").forEach((bar,i)=>{
+    const heights=[38,49,44,61,70,82,94];
+    bar.style.height=(heights[i]+Math.floor(Math.random()*7))+"%";
   });
-})();
 
-const daphneLauncher=document.getElementById("daphne-launcher");
-daphneLauncher?.addEventListener("click",()=>{
-  const section=document.getElementById("demo");
-  const shell=document.querySelector(".interactive-shell");
-  section?.scrollIntoView({behavior:"smooth",block:"start"});
-  setTimeout(()=>{
-    shell?.classList.add("highlight");
-    document.getElementById("chat-text")?.focus();
-    setTimeout(()=>shell?.classList.remove("highlight"),1400);
-  },650);
+  document.getElementById("platform").scrollIntoView({behavior:"smooth",block:"center"});
+}
+
+form.addEventListener("submit",e=>{
+  e.preventDefault();
+  const value=input.value.trim();
+  if(!value)return;
+  response.textContent="Sto analizzando...";
+  setTimeout(()=>analyse(value),700);
 });

@@ -435,3 +435,187 @@
   .home-chat-suggestions{display:grid;grid-template-columns:1fr}
   .home-chat-message p{font-size:18px}
 }
+
+/* =========================================================
+   AESTRA V6 — above-the-fold interactive experience
+   ========================================================= */
+.hero-v4{display:none!important}
+.hero-v6{
+  min-height:calc(100vh - 110px);
+  padding:34px max(3.5vw,24px) 46px;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 74% 26%,rgba(232,178,174,.18),transparent 28%),
+    linear-gradient(180deg,#fffaf8 0%,#fbf5f2 100%);
+}
+.hero-v6-grid{
+  width:100%;
+  max-width:1540px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:minmax(420px,.82fr) minmax(720px,1.45fr);
+  gap:38px;
+  align-items:center;
+}
+.hero-v6-copy{
+  padding:18px 0 18px 6px;
+}
+.hero-v6-copy h1{
+  margin:18px 0 22px;
+  font:500 clamp(56px,5.7vw,92px)/.88 "Cormorant Garamond",serif;
+  letter-spacing:-.045em;
+}
+.hero-v6-copy h1 em{
+  display:block;
+  color:var(--rose);
+  font-weight:500;
+}
+.hero-v6-copy>p{
+  max-width:590px;
+  margin:0;
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.65;
+}
+.hero-v6 .hero-actions{
+  justify-content:flex-start;
+  margin-top:27px;
+}
+.hero-v6-benefits{
+  display:grid;
+  gap:10px;
+  margin-top:30px;
+}
+.hero-v6-benefits>div{
+  display:grid;
+  grid-template-columns:90px 1fr;
+  gap:12px;
+  padding:11px 0;
+  border-top:1px solid rgba(137,102,96,.13);
+}
+.hero-v6-benefits strong{
+  font-size:11px;
+  color:#3d2d2b;
+}
+.hero-v6-benefits span{
+  color:#8a7470;
+  font-size:11px;
+  line-height:1.45;
+}
+.hero-v6-product{
+  min-width:0;
+}
+.hero-v6 .aestra-cockpit{
+  max-width:none;
+  width:100%;
+  min-height:650px;
+  margin:0;
+  border-radius:28px;
+  box-shadow:0 32px 85px rgba(68,40,36,.15);
+}
+.hero-v6 .cockpit-body{
+  min-height:582px;
+}
+.hero-v6 .cockpit-main{
+  padding:20px;
+}
+.hero-v6 .cockpit-welcome h2{
+  font-size:28px;
+}
+.hero-v6 .cockpit-kpis{
+  margin:18px 0 12px;
+}
+.hero-v6 .cockpit-kpis article{
+  padding:13px 14px;
+}
+.hero-v6 .cockpit-kpis strong{
+  font-size:22px;
+}
+.hero-v6 .cockpit-grid{
+  grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);
+  gap:12px;
+}
+.hero-v6 .agenda-panel{
+  min-height:300px;
+  padding:15px;
+}
+.hero-v6 .agenda-row{
+  min-height:48px;
+}
+.hero-v6 .daphne-live-interactive{
+  min-height:420px;
+}
+.hero-v6 .home-chat-log{
+  min-height:150px;
+  max-height:205px;
+}
+.hero-v6 .home-chat-message p{
+  font-size:16px;
+}
+.hero-v6 .performance-panel{
+  padding:15px;
+}
+.hero-v6 .performance-chart{
+  height:95px;
+}
+@media(max-width:1280px){
+  .hero-v6{
+    min-height:auto;
+    align-items:flex-start;
+  }
+  .hero-v6-grid{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+  .hero-v6-copy{
+    max-width:920px;
+    padding:20px 0 0;
+  }
+  .hero-v6-copy h1{
+    max-width:920px;
+  }
+  .hero-v6-benefits{
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  .hero-v6-benefits>div{
+    display:block;
+    padding:14px;
+    border:1px solid rgba(137,102,96,.13);
+    border-radius:14px;
+    background:rgba(255,255,255,.55);
+  }
+  .hero-v6-benefits strong,.hero-v6-benefits span{display:block}
+  .hero-v6-benefits span{margin-top:6px}
+}
+@media(max-width:760px){
+  .hero-v6{
+    padding:28px 14px 56px;
+  }
+  .hero-v6-grid{
+    gap:24px;
+  }
+  .hero-v6-copy{
+    padding-top:8px;
+  }
+  .hero-v6-copy h1{
+    font-size:54px;
+  }
+  .hero-v6-copy>p{
+    font-size:15px;
+  }
+  .hero-v6 .hero-actions{
+    flex-direction:column;
+  }
+  .hero-v6 .hero-actions .btn{
+    width:100%;
+  }
+  .hero-v6-benefits{
+    grid-template-columns:1fr;
+  }
+  .hero-v6 .aestra-cockpit{
+    min-height:auto;
+  }
+}

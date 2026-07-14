@@ -8,6 +8,7 @@
   const count = document.getElementById("home-char-count");
   const suggestions = document.getElementById("home-chat-suggestions");
   const focusLink = document.getElementById("focus-daphne");
+  const focusLinkTop = document.getElementById("focus-daphne-top");
 
   if (!panel || !form || !input || !log) return;
 
@@ -151,9 +152,9 @@
     input.focus();
   });
 
-  focusLink?.addEventListener("click", () => {
-    window.setTimeout(() => input.focus(), 350);
-  });
+  const focusChat = () => window.setTimeout(() => input.focus(), 350);
+  focusLink?.addEventListener("click", focusChat);
+  focusLinkTop?.addEventListener("click", focusChat);
 
   updateCount();
 })();

@@ -1,6 +1,6 @@
 {
-  "name": "aestra-website-v5-interactive-daphne",
-  "version": "5.0.0",
+  "name": "aestra-website-v6-above-fold-interactive",
+  "version": "6.0.0",
   "private": true,
   "type": "module",
   "engines": {

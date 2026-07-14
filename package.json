@@ -1,0 +1,9 @@
+{
+  "name": "aestra-daphne-phase-2c",
+  "version": "2.2.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  }
+}

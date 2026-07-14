@@ -61,33 +61,59 @@
 
   <div class="conversation-stage" id="experience">
     <div class="conversation-title">
-      <span>✦ Daphne è online</span>
-      <h2>Parlami del tuo centro.</h2>
-      <p>Scrivi liberamente. Ti risponderò come se lavorassi già con te.</p>
+      <span>✦ INCONTRA DAPHNE</span>
+      <h2>Raccontami il tuo centro.</h2>
+      <p>Ti farò poche domande mirate. Sul sito vedrai come penso; dentro AESTRA potrò lavorare davvero sui tuoi dati.</p>
+    </div>
+
+    <div class="conversation-progress" aria-label="Avanzamento della conversazione">
+      <div class="progress-copy">
+        <span id="conversation-stage">1 · Conoscenza</span>
+        <small id="conversation-counter">0 di 10 scambi</small>
+      </div>
+      <div class="progress-track"><i id="progress-bar"></i></div>
     </div>
 
     <form class="prompt-box" id="prompt-form">
-      <textarea id="prompt-input" rows="3" placeholder="Ad esempio: Ho un centro con 4 cabine e perdo molte clienti dopo il primo trattamento..."></textarea>
-      <button type="submit">Invia a Daphne <span>→</span></button>
+      <textarea id="prompt-input" rows="3" maxlength="1800" placeholder="Ad esempio: Ho un centro con 4 cabine e perdo molte clienti dopo il primo trattamento..."></textarea>
+      <div class="prompt-footer">
+        <small id="character-counter">0 / 1800</small>
+        <button type="submit">Invia a Daphne <span>→</span></button>
+      </div>
     </form>
 
-    <div class="suggestions">
-      <button data-prompt="Ho un centro estetico con 4 cabine e 6 collaboratrici.">Ho 4 cabine e 6 collaboratrici</button>
-      <button data-prompt="Perdo molte clienti dopo il primo trattamento.">Perdo clienti dopo il primo trattamento</button>
-      <button data-prompt="Come posso aumentare il fatturato senza alzare i prezzi?">Voglio aumentare il fatturato</button>
+    <p class="privacy-note">Non inserire dati personali delle clienti. La conversazione viene inviata al motore AI solo per generare la risposta.</p>
+    <div class="suggestions-wrap">
+      <small>Puoi iniziare da qui</small>
+      <div class="suggestions" id="suggestions">
+        <button data-prompt="Ho un centro estetico con 4 cabine e 6 collaboratrici.">Ho 4 cabine e 6 collaboratrici</button>
+        <button data-prompt="Perdo molte clienti dopo il primo trattamento.">Perdo clienti dopo il primo trattamento</button>
+        <button data-prompt="Come posso aumentare il fatturato senza alzare i prezzi?">Voglio aumentare il fatturato</button>
+      </div>
     </div>
 
     <div class="response-panel" id="response-panel">
       <div class="response-header">
         <div class="avatar">✦</div>
-        <div><strong>Daphne</strong><small>Digital AESTRA Specialist</small></div>
-        <span>online</span>
+        <div><strong>Daphne</strong><small>Digital AESTRA Specialist · versione pubblica</small></div>
+        <div class="response-tools">
+          <span id="ai-status">online</span><span class="public-demo-badge">demo pubblica</span>
+          <button type="button" id="reset-chat">Ricomincia</button>
+        </div>
       </div>
 
       <div class="response-body" id="conversation-log">
         <div class="conversation-entry daphne-entry">
           <span>Daphne</span>
-          <p>Sono pronta. Raccontami qualcosa del tuo centro e inizierò l’analisi.</p>
+          <p>Raccontami brevemente come lavora il tuo centro e qual è il problema più importante. Ti mostrerò come ragiono, senza sostituire l’analisi completa riservata ad AESTRA.</p>
+        </div>
+      </div>
+
+      <div class="thinking-strip" id="thinking-strip">
+        <span class="thinking-dot"></span>
+        <div>
+          <strong id="thinking-title">Sto iniziando a conoscere il tuo centro</strong>
+          <small id="thinking-copy">Le informazioni utili compariranno nella Memoria Strategica.</small>
         </div>
       </div>
 
@@ -122,14 +148,17 @@
         <small>CENTRO IN ANALISI</small>
         <strong id="center-label">Il tuo centro</strong>
       </div>
-      <div class="online"><i></i>Daphne sta lavorando</div>
+      <div class="dashboard-status">
+        <span id="data-quality">Dati iniziali</span>
+        <div class="online"><i></i><span id="dashboard-online-copy">Daphne è pronta</span></div>
+      </div>
     </div>
 
     <div class="kpis">
-      <article><small>OPPORTUNITÀ</small><strong id="opportunities">3</strong></article>
-      <article><small>CLIENTI DA RECUPERARE</small><strong id="clients">12</strong></article>
-      <article><small>SPAZI DA OTTIMIZZARE</small><strong id="spaces">2</strong></article>
-      <article class="highlight"><small>IMPATTO POTENZIALE</small><strong id="impact">+18%</strong></article>
+      <article><small>OPPORTUNITÀ</small><strong id="opportunities">—</strong></article>
+      <article><small>CLIENTI DA RECUPERARE</small><strong id="clients">—</strong></article>
+      <article><small>SPAZI DA OTTIMIZZARE</small><strong id="spaces">—</strong></article>
+      <article class="highlight"><small>IMPATTO POTENZIALE</small><strong id="impact">—</strong></article>
     </div>
 
     <div class="dashboard-main">
@@ -160,6 +189,20 @@
     <article><span>01</span><h3>Capisce il contesto</h3><p>Non risponde in modo generico: interpreta cabine, team, clienti e obiettivi.</p></article>
     <article><span>02</span><h3>Lavora dentro AESTRA</h3><p>Ogni conversazione può diventare un’azione, un’analisi o una campagna.</p></article>
     <article><span>03</span><h3>Ricorda e impara</h3><p>La relazione continua nel tempo e diventa sempre più personale.</p></article>
+  </div>
+</section>
+
+<section class="handoff-section" id="demo">
+  <div class="handoff-copy">
+    <span class="eyebrow">DAL PRIMO DIALOGO AL LAVORO QUOTIDIANO</span>
+    <h2>La conversazione non finisce.<br><em>Diventa il punto di partenza.</em></h2>
+    <p>Durante la demo riprendiamo ciò che Daphne ha capito del tuo centro e ti mostriamo come lavorerebbe con agenda, clienti, team e numeri reali.</p>
+  </div>
+  <div class="handoff-card">
+    <div><span>01</span><strong>Parli con Daphne</strong><small>Una prima lettura pubblica e controllata.</small></div>
+    <div><span>02</span><strong>Prenoti la demo</strong><small>Configurazione costruita sul tuo centro.</small></div>
+    <div><span>03</span><strong>Attivi AESTRA</strong><small>Daphne inizia a lavorare ogni giorno.</small></div>
+    <a class="pill large" href="mailto:demo@aestra.it?subject=Richiesta demo AESTRA">Prenota la demo personalizzata</a>
   </div>
 </section>
 

@@ -2,8 +2,18 @@
 const form = document.getElementById("prompt-form");
 const input = document.getElementById("prompt-input");
 const log = document.getElementById("conversation-log");
-const buttons = document.querySelectorAll("[data-prompt]");
+const suggestions = document.getElementById("suggestions");
 const submitButton = form?.querySelector("button[type='submit']");
+const resetButton = document.getElementById("reset-chat");
+const aiStatus = document.getElementById("ai-status");
+const characterCounter = document.getElementById("character-counter");
+
+const stageLabel = document.getElementById("conversation-stage");
+const turnCounter = document.getElementById("conversation-counter");
+const progressBar = document.getElementById("progress-bar");
+const thinkingStrip = document.getElementById("thinking-strip");
+const thinkingTitle = document.getElementById("thinking-title");
+const thinkingCopy = document.getElementById("thinking-copy");
 
 const insightTitle = document.getElementById("insight-title");
 const insightCopy = document.getElementById("insight-copy");
@@ -12,7 +22,10 @@ const clients = document.getElementById("clients");
 const spaces = document.getElementById("spaces");
 const impact = document.getElementById("impact");
 const centerLabel = document.getElementById("center-label");
+const dataQuality = document.getElementById("data-quality");
+const dashboardOnlineCopy = document.getElementById("dashboard-online-copy");
 
+const memoryPanel = document.getElementById("memory-panel");
 const memoryBody = document.getElementById("memory-body");
 const toggleMemory = document.getElementById("toggle-memory");
 const memoryCenter = document.getElementById("memory-center");
@@ -23,39 +36,47 @@ const memoryGoal = document.getElementById("memory-goal");
 const memoryMaturity = document.getElementById("memory-maturity");
 
 const MAX_TURNS = 10;
+const SESSION_TIMEOUT_MS = 30 * 60 * 1000;
+const INITIAL_MESSAGE = "Raccontami brevemente come lavora il tuo centro e qual è il problema più importante. Ti mostrerò come ragiono, senza sostituire l’analisi completa riservata ad AESTRA.";
 
-const state = {
-  turns: 0,
-  centerName: "",
-  cabins: null,
-  team: null,
-  issue: "",
-  goal: "",
-  software: null,
-  insults: 0,
-  maturity: "In valutazione",
-  closed: false
-};
+let lastActivityAt = Date.now();
+let conversation = [];
+let turns = 0;
+let closed = false;
+let profile = emptyProfile();
 
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    input.value = button.dataset.prompt;
-    input.focus();
-  });
+function emptyProfile() {
+  return {
+    centerName: "",
+    centerType: "",
+    cabins: null,
+    team: null,
+    priority: "",
+    goal: "",
+    maturity: "In valutazione"
+  };
+}
+
+suggestions?.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-prompt]");
+  if (!button || closed) return;
+  input.value = button.dataset.prompt;
+  updateCharacterCounter();
+  input.focus();
 });
+
+input?.addEventListener("input", updateCharacterCounter);
 
 toggleMemory?.addEventListener("click", () => {
   memoryBody.classList.toggle("open");
   toggleMemory.textContent = memoryBody.classList.contains("open") ? "Nascondi" : "Mostra";
 });
 
+resetButton?.addEventListener("click", resetConversation);
+
 function escapeHtml(value) {
-  return value.replace(/[&<>"']/g, (char) => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#039;"
+  return String(value).replace(/[&<>"']/g, (char) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
   })[char]);
 }
 
@@ -64,324 +85,324 @@ function addConversationEntry(role, text, kind = "") {
   let className = role === "user" ? "user-entry" : "daphne-entry";
   if (kind === "sales") className += " sales-entry";
   if (kind === "boundary") className += " boundary-entry";
+  if (kind === "error") className += " error-entry";
+
   entry.className = `conversation-entry ${className}`;
   entry.innerHTML = `<span>${role === "user" ? "Tu" : "Daphne"}</span><p>${escapeHtml(text)}</p>`;
   log.appendChild(entry);
-  log.scrollTop = log.scrollHeight;
+  log.scrollTo({ top: log.scrollHeight, behavior: "smooth" });
 }
 
-function addSalesGate(message) {
-  const gate = document.createElement("div");
-  gate.className = "sales-gate";
-  gate.innerHTML = `
-    <strong>${escapeHtml(message)}</strong>
-    <span>Sul sito posso offrirti solo una prima lettura. Dentro AESTRA lavoro ogni giorno su agenda, clienti, team e numeri reali.</span>
-    <div class="sales-actions">
-      <a href="mailto:demo@aestra.it?subject=Richiesta demo AESTRA">Prenota una demo</a>
-      <a class="secondary" href="https://app.aestra.it">Prova AESTRA</a>
-    </div>
-  `;
-  log.appendChild(gate);
-  log.scrollTop = log.scrollHeight;
+function updateCharacterCounter() {
+  const length = input?.value.length || 0;
+  characterCounter.textContent = `${length} / 1800`;
+  characterCounter.style.opacity = length > 1600 ? "1" : ".7";
 }
 
-function addLimitNote() {
-  if (document.querySelector(".chat-limit")) return;
-  const note = document.createElement("div");
-  note.className = "chat-limit";
-  note.textContent = "La versione pubblica di Daphne offre una prima lettura. La consulenza completa è disponibile dentro AESTRA.";
-  document.getElementById("response-panel").appendChild(note);
+function stageForTurn(turn) {
+  if (turn <= 2) return "1 · Conoscenza";
+  if (turn <= 5) return "2 · Prima lettura";
+  if (turn <= 7) return "3 · Valore di AESTRA";
+  return "4 · Prossimo passo";
 }
 
-function updateMemory() {
-  memoryCenter.textContent = state.centerName || "Non ancora indicato";
-  memoryCabins.textContent = Number.isFinite(state.cabins) ? state.cabins : "—";
-  memoryTeam.textContent = Number.isFinite(state.team) ? state.team : "—";
-  memoryPriority.textContent = state.issue ? labelIssue(state.issue) : "Da definire";
-  memoryGoal.textContent = state.goal || "Da definire";
-  memoryMaturity.textContent = state.maturity;
+function updateProgress() {
+  stageLabel.textContent = stageForTurn(turns);
+  turnCounter.textContent = `${turns} di ${MAX_TURNS} scambi`;
+  progressBar.style.width = `${Math.min(100, (turns / MAX_TURNS) * 100)}%`;
 }
 
-function labelIssue(issue) {
-  return {
-    retention: "Ritorno clienti",
-    revenue: "Fatturato e marginalità",
-    agenda: "Saturazione agenda",
-    team: "Performance del team",
-    digitalization: "Digitalizzazione"
-  }[issue] || "Da definire";
-}
-
-function extractContext(text) {
-  const lower = text.toLowerCase();
-
-  const cabinMatch = lower.match(/(\d+)\s*cabine?/);
-  if (cabinMatch) state.cabins = Number(cabinMatch[1]);
-
-  const teamMatch = lower.match(/(\d+)\s*(collaboratrici|collaboratori|persone|dipendenti|operatrici|operatori)/);
-  if (teamMatch) state.team = Number(teamMatch[1]);
-
-  const centerMatch = text.match(/(?:centro|salone|istituto)\s+(?:si chiama\s+)?["“]?([A-ZÀ-Ý][\wÀ-ÿ' -]{2,35})/i);
-  if (centerMatch) {
-    state.centerName = centerMatch[1].trim().replace(/[.,!?].*$/, "");
-    centerLabel.textContent = state.centerName;
-  }
-
-  if (lower.includes("aumentare il fatturato") || lower.includes("guadagnare di più")) {
-    state.goal = "Aumentare il fatturato";
-  } else if (lower.includes("più clienti") || lower.includes("nuovi clienti")) {
-    state.goal = "Acquisire più clienti";
-  } else if (lower.includes("organizzare meglio") || lower.includes("meno caos")) {
-    state.goal = "Migliorare l'organizzazione";
-  } else if (lower.includes("far rendere il team") || lower.includes("produttività")) {
-    state.goal = "Migliorare la produttività del team";
-  }
-
-  if (lower.includes("agenda cartacea") || lower.includes("senza gestionale") || lower.includes("non uso un gestionale")) {
-    state.software = false;
-    state.maturity = "Iniziale";
-  } else if (lower.includes("uso già") || lower.includes("gestionale")) {
-    state.software = true;
-    state.maturity = "Intermedia";
-  }
-
-  if (Number.isFinite(state.cabins) && Number.isFinite(state.team) && state.issue && state.goal) {
-    state.maturity = "Strutturata";
-  }
-
-  updateMemory();
-}
-
-function detectInsult(text) {
-  const lower = text.toLowerCase();
+function knownProfileFields() {
   return [
-    "stupida", "idiota", "inutile", "fai schifo",
-    "cretina", "scema", "deficiente", "incapace"
-  ].some(term => lower.includes(term));
+    profile.centerName || profile.centerType,
+    Number.isFinite(profile.cabins),
+    Number.isFinite(profile.team),
+    profile.priority,
+    profile.goal,
+    profile.maturity && profile.maturity !== "In valutazione"
+  ].filter(Boolean).length;
 }
 
-function detectIntent(text) {
-  const lower = text.toLowerCase();
-
-  if (detectInsult(text)) return "insult";
-
-  if (
-    lower.includes("come posso collegarti") ||
-    lower.includes("come faccio ad averti") ||
-    lower.includes("come lavorare con te") ||
-    lower.includes("se compro aestra") ||
-    lower.includes("come acquistare")
-  ) return "conversion";
-
-  if (
-    lower.includes("quanto dovrei fatturare") ||
-    lower.includes("fatturato ideale") ||
-    lower.includes("quanto dovrei incassare")
-  ) return "revenue_target";
-
-  if (
-    lower.includes("di cosa hai bisogno") ||
-    lower.includes("quali dati") ||
-    lower.includes("cosa ti serve")
-  ) return "required_data";
-
-  if (
-    lower.includes("primo trattamento") ||
-    lower.includes("non tornano") ||
-    lower.includes("perdo client")
-  ) return "retention";
-
-  if (
-    lower.includes("fatturato") ||
-    lower.includes("incasso") ||
-    lower.includes("margine") ||
-    lower.includes("rendono quanto")
-  ) return "revenue";
-
-  if (
-    lower.includes("agenda") ||
-    lower.includes("buchi") ||
-    lower.includes("vuota") ||
-    lower.includes("appuntamenti")
-  ) return "agenda";
-
-  if (
-    lower.includes("team") ||
-    lower.includes("collaboratric") ||
-    lower.includes("operatric") ||
-    lower.includes("dipendenti")
-  ) return "team";
-
-  return "general";
+function markKnown(element, known) {
+  element.closest("div")?.classList.toggle("is-known", Boolean(known));
 }
 
-function progressiveSalesMessage() {
-  if (state.turns === 4) {
-    return "Quello che stiamo facendo qui è solo una prima lettura. Dentro AESTRA potrei analizzare automaticamente i dati del centro senza aspettare che tu me li racconti.";
-  }
-  if (state.turns === 7) {
-    return "A questo punto ho già una prima idea del tuo centro. Collegata ad AESTRA potrei trasformarla in priorità quotidiane, azioni e monitoraggio dei risultati.";
-  }
-  return "";
-}
+function updateMemory(openOnNewData = false) {
+  const before = memoryBody.querySelectorAll(".is-known").length;
 
-function buildResponse(text) {
-  extractContext(text);
-  state.turns += 1;
+  memoryCenter.textContent = profile.centerName || profile.centerType || "Non ancora indicato";
+  memoryCabins.textContent = Number.isFinite(profile.cabins) ? profile.cabins : "—";
+  memoryTeam.textContent = Number.isFinite(profile.team) ? profile.team : "—";
+  memoryPriority.textContent = profile.priority || "Da definire";
+  memoryGoal.textContent = profile.goal || "Da definire";
+  memoryMaturity.textContent = profile.maturity || "In valutazione";
 
-  const intent = detectIntent(text);
-  const hasCabins = Number.isFinite(state.cabins);
-  const hasTeam = Number.isFinite(state.team);
+  markKnown(memoryCenter, profile.centerName || profile.centerType);
+  markKnown(memoryCabins, Number.isFinite(profile.cabins));
+  markKnown(memoryTeam, Number.isFinite(profile.team));
+  markKnown(memoryPriority, profile.priority);
+  markKnown(memoryGoal, profile.goal);
+  markKnown(memoryMaturity, profile.maturity && profile.maturity !== "In valutazione");
 
-  let reply = "";
-  let title = "Sto costruendo il profilo del centro.";
-  let copy = "Ogni dettaglio aggiunge precisione alla prima lettura.";
-  let opp = 4, cli = 12, spa = 2, imp = "+18%";
-  let kind = "";
+  const known = knownProfileFields();
+  memoryPanel.classList.toggle("has-data", known > 0);
 
-  if (intent === "insult") {
-    state.insults += 1;
-    kind = "boundary";
-    if (state.insults === 1) {
-      reply = "Capisco che la risposta possa non averti convinto. Dimmi cosa non ha funzionato e provo a essere più utile.";
-    } else if (state.insults === 2) {
-      reply = "Posso continuare ad aiutarti, ma preferisco farlo mantenendo la conversazione rispettosa. Torniamo pure al problema del tuo centro.";
-    } else {
-      reply = "Mi fermo qui sugli insulti. Quando vorrai riprendere con una domanda concreta, sarò pronta.";
-    }
-    title = "Conversazione riportata sul problema reale.";
-    copy = "Daphne mantiene il tono professionale e pone limiti chiari.";
-    imp = "Calma";
-  } else if (intent === "conversion") {
-    reply = "Per lavorare con me ogni giorno devi attivare AESTRA per il tuo centro. Durante la configurazione collegheremo agenda, clienti, team e servizi. Da quel momento non dovrai più raccontarmi cosa succede: potrò leggerlo direttamente e prepararti priorità e suggerimenti quotidiani.";
-    title = "Daphne lavora davvero dentro AESTRA.";
-    copy = "Attivazione, configurazione del centro e analisi quotidiana.";
-    opp = 8;
-    imp = "Ogni giorno";
-    kind = "sales";
-  } else if (intent === "required_data") {
-    reply = "Per una prima lettura mi bastano struttura, team, problema principale e obiettivo. L’analisi completa richiede invece agenda, clienti, trattamenti e numeri reali: è proprio il valore che Daphne offre dentro AESTRA.";
-    title = "Prima lettura sul sito, analisi completa dentro AESTRA.";
-    copy = "La versione pubblica mostra il metodo senza sostituire il software.";
-    opp = 5;
-    imp = "Assaggio";
-  } else if (intent === "revenue_target") {
-    state.issue = "revenue";
-    reply = "Posso aiutarti a capire da quali variabili dipende, ma non sarebbe serio darti qui un numero definitivo. Dentro AESTRA potrei costruire un obiettivo dinamico usando cabine, team, agenda, prezzi, clienti attivi e marginalità reale.";
-    title = "Il fatturato obiettivo richiede dati reali.";
-    copy = "Daphne può costruirlo e aggiornarlo automaticamente dentro AESTRA.";
-    opp = 6;
-    imp = "3 scenari";
-  } else if (intent === "retention") {
-    state.issue = "retention";
-    reply = "Il primo punto che controllerei è ciò che accade nelle 72 ore dopo il trattamento: follow-up, proposta del percorso successivo e tempi di ricontatto. Posso mostrarti il metodo; dentro AESTRA potrei individuare automaticamente le clienti a rischio.";
-    title = "Il problema è spesso dopo il primo trattamento.";
-    copy = "Dentro AESTRA Daphne individua e segue le clienti a rischio.";
-    cli = hasTeam ? Math.max(18, state.team * 5) : 27;
-    opp = 7;
-    imp = "+31%";
-  } else if (intent === "revenue") {
-    state.issue = "revenue";
-    reply = hasTeam
-      ? `Con ${state.team} persone, guarderei saturazione, valore medio, ritorno clienti e vendita dei percorsi. Qui posso indicarti le leve; dentro AESTRA potrei misurarle continuamente sui dati reali.`
-      : "Guarderei saturazione, valore medio, ritorno clienti e vendita dei percorsi. Qui posso indicarti le leve; dentro AESTRA potrei misurarle continuamente.";
-    title = "Il rendimento va scomposto nelle sue cause.";
-    copy = "Daphne misura produttività, conversione e marginalità dentro AESTRA.";
-    opp = hasTeam ? Math.min(10, state.team + 4) : 7;
-    cli = 19;
-    spa = hasCabins ? Math.max(2, Math.ceil(state.cabins / 2)) : 3;
-    imp = "+26%";
-  } else if (intent === "agenda") {
-    state.issue = "agenda";
-    reply = hasCabins
-      ? `Con ${state.cabins} cabine, controllerei la saturazione per fascia oraria. Qui posso darti una prima direzione; dentro AESTRA potrei individuare automaticamente buchi e opportunità.`
-      : "Controllerei la saturazione per fascia oraria. Qui posso darti una prima direzione; dentro AESTRA potrei individuare automaticamente buchi e opportunità.";
-    title = "La saturazione non è uniforme.";
-    copy = "Dentro AESTRA Daphne analizza l’agenda in modo continuo.";
-    opp = hasCabins ? Math.min(9, state.cabins + 2) : 6;
-    spa = hasCabins ? state.cabins : 4;
-    imp = "+22%";
-  } else if (intent === "team") {
-    state.issue = "team";
-    reply = hasTeam
-      ? `Con ${state.team} persone, eviterei classifiche semplicistiche. Guarderei carico, ritorno clienti e capacità di proposta. Qui posso mostrarti il criterio; dentro AESTRA potrei analizzare il team sui dati reali.`
-      : "Eviterei classifiche semplicistiche. Guarderei carico, ritorno clienti e capacità di proposta.";
-    title = "Il team va letto, non classificato.";
-    copy = "Dentro AESTRA Daphne separa performance e problemi organizzativi.";
-    opp = hasTeam ? Math.min(10, state.team + 3) : 5;
-    imp = "+20%";
-  } else if (hasCabins || hasTeam) {
-    const known = [];
-    if (hasCabins) known.push(`${state.cabins} cabine`);
-    if (hasTeam) known.push(`${state.team} persone`);
-    reply = `So già che il centro ha ${known.join(" e ")}. Ora dimmi qual è il problema più urgente: agenda, clienti inattivi, fatturato oppure team.`;
-    title = "Il profilo iniziale è pronto.";
-    copy = "Ora serve scegliere la priorità operativa.";
-    opp = Math.min(10, (state.cabins || 1) + (state.team || 1));
-    spa = state.cabins || 2;
-    cli = (state.team || 2) * 4;
-    imp = "+21%";
+  if (profile.centerName) {
+    centerLabel.textContent = profile.centerName;
+  } else if (profile.centerType) {
+    centerLabel.textContent = profile.centerType;
   } else {
-    reply = "Per iniziare, raccontami quante cabine avete, quante persone lavorano nel centro e qual è oggi il problema che ti pesa di più.";
+    centerLabel.textContent = "Il tuo centro";
   }
 
-  updateMemory();
-  return { reply, title, copy, opp, cli, spa, imp, kind };
+  if (openOnNewData && known > before && !memoryBody.classList.contains("open")) {
+    memoryBody.classList.add("open");
+    toggleMemory.textContent = "Nascondi";
+  }
+
+  if (known === 0) {
+    thinkingTitle.textContent = "Sto iniziando a conoscere il tuo centro";
+    thinkingCopy.textContent = "Le informazioni utili compariranno nella Memoria Strategica.";
+  } else if (known <= 2) {
+    thinkingTitle.textContent = "Ho iniziato a costruire il profilo";
+    thinkingCopy.textContent = "Mi manca ancora qualche elemento per formulare una prima lettura.";
+  } else if (known <= 4) {
+    thinkingTitle.textContent = "Il profilo sta diventando più chiaro";
+    thinkingCopy.textContent = "Sto collegando struttura, priorità e obiettivo.";
+  } else {
+    thinkingTitle.textContent = "Conosco già gli elementi essenziali";
+    thinkingCopy.textContent = "Dentro AESTRA questa memoria diventerebbe operativa e permanente.";
+  }
+
+  const qualityLabels = ["Dati iniziali", "Profilo parziale", "Profilo utile", "Profilo completo"];
+  const qualityIndex = known <= 1 ? 0 : known <= 3 ? 1 : known <= 5 ? 2 : 3;
+  dataQuality.textContent = qualityLabels[qualityIndex];
 }
 
-function updateDashboard(result) {
-  insightTitle.textContent = result.title;
-  insightCopy.textContent = result.copy;
-  opportunities.textContent = result.opp;
-  clients.textContent = result.cli;
-  spaces.textContent = result.spa;
-  impact.textContent = result.imp;
-
-  document.querySelectorAll(".chart div").forEach((bar, index) => {
-    const heights = [38, 49, 44, 61, 70, 82, 94];
-    bar.style.height = `${heights[index] + Math.floor(Math.random() * 7)}%`;
+function animateKpis() {
+  document.querySelectorAll(".kpis article").forEach((card) => {
+    card.classList.remove("updated");
+    void card.offsetWidth;
+    card.classList.add("updated");
   });
 }
 
-function closePublicConversation() {
-  state.closed = true;
-  input.disabled = true;
-  submitButton.disabled = true;
-  input.placeholder = "Continua la conversazione dentro AESTRA";
-  addSalesGate("Ora ho abbastanza elementi per indicarti il passo successivo.");
-  addLimitNote();
+function updateDashboard(data = {}) {
+  const dashboard = data.dashboard || {};
+
+  insightTitle.textContent = dashboard.title || "Dimmi come lavori.";
+  insightCopy.textContent = dashboard.copy || "Trasformerò le tue parole in una prima lettura operativa.";
+  opportunities.textContent = dashboard.opportunities ?? "—";
+  clients.textContent = dashboard.clients ?? "—";
+  spaces.textContent = dashboard.spaces ?? "—";
+  impact.textContent = dashboard.impact || "—";
+
+  dashboardOnlineCopy.textContent = turns ? "Daphne sta costruendo la lettura" : "Daphne è pronta";
+  animateKpis();
+
+  document.querySelectorAll(".chart div").forEach((bar, index) => {
+    const neutral = [28, 34, 31, 40, 45, 51, 58];
+    const growth = Math.min(24, turns * 3);
+    bar.style.height = `${neutral[index] + growth + index * 2}%`;
+  });
 }
 
-form?.addEventListener("submit", (event) => {
+function setBusy(busy) {
+  submitButton.disabled = busy;
+  input.disabled = busy || closed;
+  thinkingStrip.classList.toggle("active", busy);
+
+  if (busy) {
+    aiStatus.textContent = "sta pensando…";
+    aiStatus.className = "thinking";
+    dashboardOnlineCopy.textContent = "Daphne sta elaborando";
+    submitButton.innerHTML = "Daphne sta pensando…";
+  } else {
+    aiStatus.textContent = closed ? "sessione conclusa" : "online";
+    aiStatus.className = "";
+    dashboardOnlineCopy.textContent = closed ? "Prima lettura conclusa" : (turns ? "Daphne sta costruendo la lettura" : "Daphne è pronta");
+    submitButton.innerHTML = 'Invia a Daphne <span>→</span>';
+  }
+}
+
+function renderSuggestions() {
+  if (closed) {
+    suggestions.innerHTML = `
+      <button data-prompt="" disabled>La conversazione pubblica è conclusa</button>
+    `;
+    return;
+  }
+
+  const items = [];
+  if (!profile.centerType && !profile.centerName) {
+    items.push(["Ho un centro estetico indipendente.", "Descrivi il centro"]);
+  }
+  if (!Number.isFinite(profile.cabins) || !Number.isFinite(profile.team)) {
+    items.push(["Il centro ha 4 cabine e lavoriamo in 6 persone.", "Indica struttura e team"]);
+  }
+  if (!profile.priority) {
+    items.push(["Il problema principale è che molte clienti non tornano.", "Indica il problema"]);
+  }
+  if (!profile.goal) {
+    items.push(["Il mio obiettivo è aumentare il fatturato senza alzare i prezzi.", "Indica l’obiettivo"]);
+  }
+  if (turns >= 4) {
+    items.push(["Cosa potresti fare per me dentro AESTRA?", "Scopri Daphne in AESTRA"]);
+  }
+  if (turns >= 6) {
+    items.push(["Come posso prenotare una demo personalizzata?", "Prenota una demo"]);
+  }
+
+  const unique = items.slice(0, 3);
+  suggestions.innerHTML = unique.map(([prompt, label]) =>
+    `<button data-prompt="${escapeHtml(prompt)}">${escapeHtml(label)}</button>`
+  ).join("");
+}
+
+function addConversionCard(data) {
+  if (!data?.show) return;
+
+  const existing = document.querySelector(".sales-gate[data-ai='true']");
+  if (existing) existing.remove();
+
+  const gate = document.createElement("div");
+  gate.className = "sales-gate";
+  gate.dataset.ai = "true";
+  gate.innerHTML = `
+    <strong>${escapeHtml(data.title || "Vuoi vedere Daphne lavorare sui dati reali?")}</strong>
+    <span>${escapeHtml(data.copy || "Dentro AESTRA posso analizzare agenda, clienti, team e numeri reali ogni giorno.")}</span>
+    <div class="sales-actions">
+      <a href="mailto:demo@aestra.it?subject=Richiesta demo AESTRA">Prenota una demo</a>
+      <a class="secondary" href="https://app.aestra.it">Prova AESTRA</a>
+    </div>`;
+  log.appendChild(gate);
+  log.scrollTo({ top: log.scrollHeight, behavior: "smooth" });
+}
+
+function closeConversation(reason = "") {
+  closed = true;
+  input.placeholder = "La prima lettura è conclusa. Continua dentro AESTRA.";
+  if (reason) addConversationEntry("daphne", reason, "sales");
+  renderSuggestions();
+  setBusy(false);
+  updateProgress();
+}
+
+async function sendToDaphne(message) {
+  if (Date.now() - lastActivityAt > SESSION_TIMEOUT_MS && conversation.length) {
+    resetConversation();
+    throw new Error("La sessione era scaduta ed è stata riavviata. Puoi ripetere la domanda.");
+  }
+
+  lastActivityAt = Date.now();
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 25000);
+
+  const response = await fetch("/api/daphne", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      message,
+      messages: conversation.slice(-12),
+      profile,
+      turn: turns,
+      maxTurns: MAX_TURNS
+    }),
+    signal: controller.signal
+  }).finally(() => clearTimeout(timeout));
+
+  const payload = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    if (response.status === 429) {
+      throw new Error(payload.error || "Hai raggiunto il limite temporaneo della demo.");
+    }
+    throw new Error(payload.error || "Non riesco a rispondere in questo momento.");
+  }
+
+  return payload;
+}
+
+form?.addEventListener("submit", async (event) => {
   event.preventDefault();
-  if (state.closed) return;
+  if (closed) return;
 
   const value = input.value.trim();
-  if (!value) return;
+  if (!value) {
+    input.focus();
+    return;
+  }
 
+  turns += 1;
+  updateProgress();
   addConversationEntry("user", value);
+  conversation.push({ role: "user", content: value });
+
   input.value = "";
-  submitButton.disabled = true;
-  submitButton.innerHTML = "Daphne sta pensando…";
+  updateCharacterCounter();
+  setBusy(true);
 
-  setTimeout(() => {
-    const result = buildResponse(value);
-    addConversationEntry("daphne", result.reply, result.kind);
-    updateDashboard(result);
+  try {
+    const data = await sendToDaphne(value);
+    const answer = data.answer || "Non ho abbastanza elementi per rispondere con precisione.";
 
-    const salesMessage = progressiveSalesMessage();
-    if (salesMessage) {
-      setTimeout(() => addConversationEntry("daphne", salesMessage, "sales"), 450);
+    addConversationEntry("daphne", answer, data.tone || "");
+    conversation.push({ role: "assistant", content: answer });
+
+    if (data.profile && typeof data.profile === "object") {
+      profile = { ...profile, ...data.profile };
+      updateMemory(true);
     }
 
-    if (state.turns >= MAX_TURNS || result.kind === "sales" && state.turns >= 6) {
-      setTimeout(closePublicConversation, 750);
+    updateDashboard(data);
+    renderSuggestions();
+    addConversionCard(data.conversion);
+
+    if (data.endConversation || turns >= MAX_TURNS) {
+      closeConversation(data.closingMessage || "");
     } else {
-      submitButton.disabled = false;
-      submitButton.innerHTML = 'Invia a Daphne <span>→</span>';
+      setBusy(false);
       input.focus();
     }
-  }, 650);
+  } catch (error) {
+    console.error(error);
+    const message = error?.name === "AbortError"
+      ? "La risposta sta richiedendo troppo tempo. Riprova tra qualche secondo."
+      : (error.message || "Il collegamento non è disponibile.");
+
+    addConversationEntry("daphne", message, "error");
+    aiStatus.textContent = "non disponibile";
+    aiStatus.className = "error";
+    setBusy(false);
+  }
 });
 
+function resetConversation() {
+  conversation = [];
+  profile = emptyProfile();
+  turns = 0;
+  closed = false;
+  lastActivityAt = Date.now();
+
+  log.innerHTML = "";
+  addConversationEntry("daphne", INITIAL_MESSAGE);
+
+  document.querySelectorAll(".sales-gate[data-ai='true']").forEach((el) => el.remove());
+
+  input.value = "";
+  input.disabled = false;
+  input.placeholder = "Ad esempio: Ho un centro con 4 cabine...";
+  updateCharacterCounter();
+  updateProgress();
+  updateMemory();
+  updateDashboard();
+  renderSuggestions();
+  setBusy(false);
+  input.focus();
+}
+
+updateCharacterCounter();
+updateProgress();
 updateMemory();
+updateDashboard();
+renderSuggestions();

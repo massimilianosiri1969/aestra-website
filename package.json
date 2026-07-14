@@ -1,9 +1,5 @@
 {
-  "name": "aestra-website-v6-above-fold-interactive",
-  "version": "6.0.0",
-  "private": true,
-  "type": "module",
-  "engines": {
-    "node": ">=20"
-  }
+  "name": "aestra-ac-experience-v1",
+  "version": "1.0.0",
+  "private": true
 }

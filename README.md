@@ -1,17 +1,16 @@
-# AESTRA Website V6 — Above the Fold Interactive
+# AESTRA A+C Experience V1
 
-## Correzione principale
-La chat con Daphne è ora visibile e utilizzabile nel primo schermo, insieme alla piattaforma operativa.
+Concept A+C:
+- nessuna hero tradizionale;
+- AESTRA è già aperto a tutto schermo;
+- Daphne non è una colonna laterale;
+- i moduli si manifestano e vengono portati in primo piano;
+- la dashboard reagisce alle parole dell’utente;
+- la conversazione avviene nella console centrale;
+- tutto è testabile senza API.
 
-## Struttura
-- testo e promessa a sinistra;
-- cockpit AESTRA completo a destra;
-- chat reale di Daphne già visibile;
-- niente grande spazio vuoto;
-- niente necessità di scorrere per iniziare la conversazione;
-- software e AI mostrati contemporaneamente.
+## Avvio
+Caricare i file nella root del repository GitHub oppure aprire `index.html`.
 
-## Backend
-Configurare su Vercel:
-- `OPENAI_API_KEY`
-- `OPENAI_MODEL=gpt-5-mini`
+## Nota
+Questa è una prova di regia e interazione. Le risposte sono locali per consentire il test immediato.

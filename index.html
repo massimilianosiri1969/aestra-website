@@ -1,126 +1,165 @@
-<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AESTRA — Daphne lavora con te</title><meta name="description" content="AESTRA unisce un software operativo completo e Daphne, l’intelligenza specializzata nel beauty."><meta name="theme-color" content="#fffaf7"><link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/site-v3.css"></head><body><header class="site-nav"><a class="brand" href="index.html"><img src="assets/icons/logo.svg" alt="AESTRA"></a><button class="menu-toggle" aria-label="Apri menu">☰</button><nav class="main-links"><a href="esperienza.html">Esperienza</a><a href="piattaforma.html">Piattaforma</a><a href="daphne.html">Daphne</a><a href="moduli.html">Moduli</a><a href="confronto.html">Perché AESTRA</a></nav><div class="nav-actions"><a href="https://app.aestra.it">Accedi</a><a class="btn primary" href="demo.html">Prenota una demo</a></div></header>
-<main>
-<section class="hero-v6">
-  <div class="hero-v6-grid">
-    <div class="hero-v6-copy">
-      <span class="eyebrow">IL SISTEMA OPERATIVO INTELLIGENTE PER IL BEAUTY</span>
-      <h1>Gestisci tutto.<br><em>Daphne ti aiuta a decidere.</em></h1>
-      <p>AESTRA riunisce agenda, clienti, team, trattamenti, marketing, magazzino e numeri. Daphne li collega e ti mostra ogni giorno da dove iniziare.</p>
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AESTRA — Live Experience</title>
+  <meta name="description" content="AESTRA e Daphne: il centro estetico prende vita.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <main class="aestra-shell">
+    <header class="os-bar">
+      <div class="brand">
+        <span class="brand-mark">A</span>
+        <div><strong>AESTRA</strong><small>Centro Aurora</small></div>
+      </div>
+      <div class="os-status"><i></i><span id="os-status">Sistema in avvio</span></div>
+      <div class="os-actions">
+        <button id="restart">Ricomincia</button>
+        <span class="avatar">MS</span>
+      </div>
+    </header>
 
-      <div class="hero-actions">
-        <a class="btn primary large" href="#home-daphne" id="focus-daphne-top">Parla con Daphne</a>
-        <a class="btn ghost large" href="piattaforma.html">Scopri la piattaforma</a>
+    <aside class="module-rail" aria-label="Moduli AESTRA">
+      <button class="active" data-panel="briefing"><span>◫</span><small>Oggi</small></button>
+      <button data-panel="agenda"><span>▦</span><small>Agenda</small></button>
+      <button data-panel="clients"><span>♡</span><small>Clienti</small></button>
+      <button data-panel="journey"><span>◇</span><small>Journey</small></button>
+      <button data-panel="marketing"><span>↗</span><small>Marketing</small></button>
+      <button data-panel="stock"><span>□</span><small>Stock</small></button>
+      <button data-panel="insights"><span>⌁</span><small>BI</small></button>
+    </aside>
+
+    <section class="workspace">
+      <div class="ambient-copy">
+        <small>DAILY BRIEFING</small>
+        <h1 id="workspace-title">Buongiorno, Francesca.</h1>
+        <p id="workspace-subtitle">Sto preparando il centro per la giornata.</p>
       </div>
 
-      <div class="hero-v6-benefits">
-        <div><strong>Agenda</strong><span>Riduci i vuoti e coordina cabine e team.</span></div>
-        <div><strong>Clienti</strong><span>Individua chi non torna e quando intervenire.</span></div>
-        <div><strong>Numeri</strong><span>Leggi fatturato, margini e priorità operative.</span></div>
+      <article class="floating-panel hero-panel active" id="briefing" data-x="8" data-y="18">
+        <div class="panel-top">
+          <div><small>OGGI</small><strong>Priorità operative</strong></div>
+          <span>08:12</span>
+        </div>
+        <div class="priority-list">
+          <div><b>01</b><p><strong>Riattiva 7 clienti</strong><small>Probabilità di ritorno alta</small></p></div>
+          <div><b>02</b><p><strong>Riempi la cabina 3</strong><small>Finestra libera alle 15:30</small></p></div>
+          <div><b>03</b><p><strong>Controlla il percorso corpo</strong><small>Margine sotto la media</small></p></div>
+        </div>
+      </article>
+
+      <article class="floating-panel agenda-panel" id="agenda" data-x="38" data-y="14">
+        <div class="panel-top">
+          <div><small>AGENDA</small><strong>Oggi, per cabina</strong></div>
+          <span>28 appuntamenti</span>
+        </div>
+        <div class="agenda-grid">
+          <div class="hours"><span>09</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span></div>
+          <div class="row"><b>Cabina 1</b><i class="slot rose s1">Viso</i><i class="slot sand s2">Laser</i><i class="slot lilac s3">Corpo</i></div>
+          <div class="row"><b>Cabina 2</b><i class="slot green s4">Massaggio</i><i class="slot rose s5">Trattamento</i></div>
+          <div class="row"><b>Cabina 3</b><i class="slot sand s6">Epilazione</i><i class="slot free s7">Disponibile</i><i class="slot lilac s8">Viso</i></div>
+        </div>
+      </article>
+
+      <article class="floating-panel clients-panel" id="clients" data-x="15" data-y="48">
+        <div class="panel-top">
+          <div><small>CLIENTI</small><strong>Ritorno e inattività</strong></div>
+          <span>368 attivi</span>
+        </div>
+        <div class="client-list">
+          <div><span>EM</span><p><strong>Elena M.</strong><small>64 giorni dall’ultima visita</small></p><b>Alta priorità</b></div>
+          <div><span>SC</span><p><strong>Sara C.</strong><small>Pacchetto viso quasi concluso</small></p><b>Da contattare</b></div>
+          <div><span>AL</span><p><strong>Anna L.</strong><small>Follow-up mancante</small></p><b>Oggi</b></div>
+        </div>
+      </article>
+
+      <article class="floating-panel chart-panel" id="insights" data-x="50" data-y="50">
+        <div class="panel-top">
+          <div><small>BUSINESS INTELLIGENCE</small><strong>Ultime 8 settimane</strong></div>
+          <span>+18,4%</span>
+        </div>
+        <svg viewBox="0 0 700 210" aria-label="Andamento">
+          <defs>
+            <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#c86e78" stop-opacity=".28"/>
+              <stop offset="1" stop-color="#c86e78" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path class="area" d="M0 172 C78 165,112 108,181 130 C248 151,284 78,352 95 C426 114,458 57,532 70 C602 83,636 34,700 28 L700 210 L0 210Z"/>
+          <path class="line" d="M0 172 C78 165,112 108,181 130 C248 151,284 78,352 95 C426 114,458 57,532 70 C602 83,636 34,700 28"/>
+        </svg>
+      </article>
+
+      <article class="floating-panel marketing-panel" id="marketing" data-x="67" data-y="25">
+        <div class="panel-top">
+          <div><small>MARKETING</small><strong>Azioni suggerite</strong></div>
+          <span>3 campagne</span>
+        </div>
+        <div class="campaign">
+          <small>SEGMENTO</small>
+          <strong>Clienti inattive da 45–90 giorni</strong>
+          <p>Messaggio personalizzato + incentivo leggero.</p>
+          <button>Prepara campagna</button>
+        </div>
+      </article>
+
+      <article class="floating-panel stock-panel" id="stock" data-x="72" data-y="52">
+        <div class="panel-top">
+          <div><small>MAGAZZINO</small><strong>Previsioni</strong></div>
+          <span>2 alert</span>
+        </div>
+        <div class="stock-items">
+          <div><strong>Siero viso</strong><small>7 giorni residui</small><i style="--w:82%"></i></div>
+          <div><strong>Gel laser</strong><small>4 giorni residui</small><i style="--w:94%"></i></div>
+        </div>
+      </article>
+
+      <div class="daphne-orb" id="daphne-orb" aria-hidden="true">
+        <span>D</span>
       </div>
-    </div>
 
-    <div class="hero-v6-product">
-      <div class="aestra-cockpit" aria-label="Anteprima operativa di AESTRA">
-    <div class="cockpit-topbar">
-      <div class="cockpit-brand"><img src="assets/icons/favicon.svg" alt=""><strong>AESTRA</strong><span>Centro Aurora</span></div>
-      <div class="cockpit-date">Martedì 14 luglio · 08:12</div>
-      <div class="cockpit-user"><span>MS</span></div>
-    </div>
-
-    <div class="cockpit-body">
-      <aside class="cockpit-sidebar">
-        <button class="active"><i>◫</i><span>Oggi</span></button>
-        <button><i>▦</i><span>Agenda</span></button>
-        <button><i>♡</i><span>Clienti</span></button>
-        <button><i>◇</i><span>Beauty Journey</span></button>
-        <button><i>↗</i><span>Marketing</span></button>
-        <button><i>□</i><span>Magazzino</span></button>
-        <button><i>⌁</i><span>Statistiche</span></button>
-      </aside>
-
-      <div class="cockpit-main">
-        <div class="cockpit-welcome">
+      <section class="daphne-console" id="daphne-console">
+        <div class="console-head">
           <div>
-            <small>DAILY BRIEFING</small>
-            <h2>Buongiorno, Francesca.</h2>
-            <p>Il centro è pronto. Daphne ha ordinato le priorità della giornata.</p>
+            <small id="daphne-state">DAPHNE È ONLINE</small>
+            <strong id="daphne-message">Ciao, sono Daphne.</strong>
           </div>
-          <div class="briefing-status"><i></i> Tutti i sistemi aggiornati</div>
+          <span class="pulse"></span>
         </div>
 
-        <div class="cockpit-kpis">
-          <article><small>APPUNTAMENTI</small><strong>28</strong><span>5 cabine attive</span></article>
-          <article><small>CLIENTI ATTIVI</small><strong>368</strong><span>+12 questo mese</span></article>
-          <article><small>OCCUPAZIONE OGGI</small><strong>82%</strong><span>Picco alle 16:00</span></article>
-          <article class="accent"><small>AZIONI DI DAPHNE</small><strong>3</strong><span>Ordinate per impatto</span></article>
+        <p class="console-prompt" id="console-prompt">Raccontami come lavori e proverò a capire se posso aiutarti.</p>
+
+        <div class="thinking-line" id="thinking-line">
+          <span></span><span></span><span></span>
+          <small id="thinking-copy">Sto osservando il centro demo…</small>
         </div>
 
-        <div class="cockpit-grid">
-          <section class="agenda-panel">
-            <div class="panel-title"><div><small>AGENDA</small><strong>Oggi, per cabina</strong></div><a href="piattaforma.html#agenda">Apri agenda</a></div>
-            <div class="agenda-hours"><span>09</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span></div>
-            <div class="agenda-row"><b>Cabina 1</b><i class="slot s1">Viso</i><i class="slot s2">Laser</i><i class="slot s3">Corpo</i></div>
-            <div class="agenda-row"><b>Cabina 2</b><i class="slot s4">Massaggio</i><i class="slot s5">Trattamento</i></div>
-            <div class="agenda-row"><b>Cabina 3</b><i class="slot s6">Epilazione</i><i class="slot empty">Disponibile</i><i class="slot s7">Viso</i></div>
-            <div class="agenda-row"><b>Cabina 4</b><i class="slot s8">Corpo</i><i class="slot s9">Laser</i></div>
-          
-    </div>
-  </div>
-</section>
-
-          <section class="daphne-live daphne-live-interactive" id="home-daphne">
-  <div class="daphne-live-head">
-    <div class="daphne-avatar-wrap"><img src="assets/images/daphne-portrait.webp" alt="Daphne"></div>
-    <div><strong>Daphne</strong><small>Digital AESTRA Specialist</small></div>
-    <span class="live-dot" id="home-ai-status">online</span>
-  </div>
-
-  <div class="home-chat-log" id="home-chat-log" aria-live="polite">
-    <div class="home-chat-message daphne">
-      <span>DAPHNE</span>
-      <p>Ciao, sono Daphne. Raccontami come lavori e proverò a capire se posso aiutarti.</p>
-    </div>
-  </div>
-
-  <div class="home-memory" id="home-memory">
-    <span id="hm-center">Centro da conoscere</span>
-    <span id="hm-team">Team —</span>
-    <span id="hm-cabins">Cabine —</span>
-    <span id="hm-goal">Obiettivo da definire</span>
-  </div>
-
-  <form class="home-chat-form" id="home-chat-form">
-    <textarea id="home-chat-input" rows="2" maxlength="1800" placeholder="Raccontami il tuo centro..."></textarea>
-    <div class="home-chat-footer">
-      <small id="home-char-count">0 / 1800</small>
-      <button type="submit">Invia <span>→</span></button>
-    </div>
-  </form>
-
-  <div class="home-chat-suggestions" id="home-chat-suggestions">
-    <button type="button" data-home-prompt="Ho un centro estetico con 4 cabine e 6 collaboratrici.">4 cabine e 6 collaboratrici</button>
-    <button type="button" data-home-prompt="Molte clienti non tornano dopo il primo trattamento.">Le clienti non tornano</button>
-  </div>
-</section>
-
-          <section class="performance-panel">
-            <div class="panel-title"><div><small>ANDAMENTO</small><strong>Ultime 8 settimane</strong></div><span>+18,4%</span></div>
-            <div class="performance-chart">
-              <svg viewBox="0 0 640 170" role="img" aria-label="Grafico andamento">
-                <defs><linearGradient id="fillTrend" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d57883" stop-opacity=".30"/><stop offset="1" stop-color="#d57883" stop-opacity="0"/></linearGradient></defs>
-                <path class="trend-fill" d="M0 140 C70 130,90 85,155 106 C220 126,245 50,315 74 C380 96,410 42,475 55 C530 65,560 24,640 20 L640 170 L0 170Z"/>
-                <path class="trend-line" d="M0 140 C70 130,90 85,155 106 C220 126,245 50,315 74 C380 96,410 42,475 55 C530 65,560 24,640 20"/>
-              </svg>
-            </div>
-            <div class="performance-legend"><span>Fatturato</span><span>Clienti di ritorno</span><span>Occupazione</span></div>
-          </section>
+        <div class="profile-strip">
+          <span id="p-center">Centro da conoscere</span>
+          <span id="p-cabins">Cabine —</span>
+          <span id="p-team">Team —</span>
+          <span id="p-goal">Obiettivo da definire</span>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="outcomes"><div class="section-intro"><span class="eyebrow">NON UN SEMPLICE CRM</span><h2>Ogni funzione risolve<br><em>un problema reale.</em></h2></div><div class="outcome-grid"><a href="piattaforma.html#agenda"><small>AGENDA INTELLIGENTE</small><h3>Non lascia cabine vuote.</h3><p>Capacità, operatori, tempi e disponibilità sempre sotto controllo.</p><span>Scopri →</span></a><a href="piattaforma.html#clienti"><small>CRM + BEAUTY JOURNEY</small><h3>Fa tornare le clienti.</h3><p>Follow-up, percorsi e riattivazioni costruiti sulla storia reale.</p><span>Scopri →</span></a><a href="piattaforma.html#marketing"><small>MARKETING</small><h3>Sa chi contattare oggi.</h3><p>Segmenti intelligenti, campagne e risultati nello stesso ambiente.</p><span>Scopri →</span></a><a href="piattaforma.html#magazzino"><small>MAGAZZINO</small><h3>Sa cosa sta per finire.</h3><p>Scorte, consumi, fatture e riordino collegati ai trattamenti.</p><span>Scopri →</span></a></div></section>
-<section class="daphne-operates"><div class="operate-copy"><span class="eyebrow light">DAPHNE È DENTRO IL SOFTWARE</span><h2>Non ti mostra solo i dati.<br><em>Li usa insieme.</em></h2><p>Quando l’agenda cambia, un cliente non torna o un trattamento rende meno del previsto, Daphne collega le informazioni e porta in primo piano la decisione utile.</p><a class="btn light" href="daphne.html">Guarda una giornata con Daphne</a></div><div class="operate-flow"><div><span>08:00</span><strong>Controlla agenda e priorità</strong><small>2 cabine con capacità libera</small></div><div><span>10:30</span><strong>Individua clienti da recuperare</strong><small>7 profili con alta probabilità di ritorno</small></div><div><span>14:15</span><strong>Confronta trattamenti e margini</strong><small>Una proposta da rivedere</small></div><div><span>18:30</span><strong>Prepara il briefing di domani</strong><small>Tre azioni, ordinate per impatto</small></div></div></section>
-<section class="module-marquee"><span>Agenda</span><span>Clienti</span><span>Beauty Journey</span><span>Marketing</span><span>Personale</span><span>Magazzino</span><span>Statistiche</span><span>App Cliente</span><span>Business Intelligence</span></section>
-<section class="cta-band"><span class="eyebrow">PROVALA SUL SITO. ASSUMILA DENTRO AESTRA.</span><h2>Prima conosce il tuo centro.<br><em>Poi inizia a lavorare.</em></h2><div><a class="btn primary large" href="esperienza.html">Inizia la conversazione</a><a class="btn ghost large" href="demo.html">Prenota una demo</a></div></section>
-</main><footer class="site-footer"><div><img src="assets/icons/logo.svg" alt="AESTRA"><p>Il sistema operativo intelligente per i centri estetici.</p></div><div class="footer-links"><a href="piattaforma.html">Piattaforma</a><a href="moduli.html">Moduli</a><a href="esperienza.html">Parla con Daphne</a><a href="demo.html">Demo</a></div><small>© 2026 AESTRA Technologies</small></footer><script src="js/site-v3.js"></script><script src="js/home-daphne.js"></script></body></html>
+
+        <form id="talk-form">
+          <input id="talk-input" maxlength="500" autocomplete="off" placeholder="Inizia da dove preferisci…">
+          <button type="submit">Parla con Daphne <span>→</span></button>
+        </form>
+
+        <div class="starter-actions" id="starter-actions">
+          <button data-prompt="Ho un centro estetico con 4 cabine e 6 collaboratrici.">4 cabine e 6 collaboratrici</button>
+          <button data-prompt="Molte clienti non tornano dopo il primo trattamento.">Le clienti non tornano</button>
+          <button data-prompt="Voglio aumentare il fatturato senza alzare i prezzi.">Aumentare il fatturato</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

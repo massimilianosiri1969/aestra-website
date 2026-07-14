@@ -1,18 +1,10 @@
-# AESTRA Experience V1
+# AESTRA Experience V2 — Daphne
 
-Nuovo progetto autonomo, riscritto da zero.
-
-## Regia
-- apertura cinematografica;
-- AESTRA si accende;
-- Daphne osserva e cambia modulo da sola;
-- un solo modulo protagonista alla volta;
-- niente dashboard statica;
-- niente grande finestra-chat;
-- solo alla fine compare l’invito a raccontare il proprio centro;
-- risposta del software alle parole dell’utente.
-
-## Test
-Caricare tutti i file nella root di un repository GitHub collegato a Vercel.
-
-La demo funziona senza API.
+Correzioni principali:
+- Daphne grande e visibile per tutta l’esperienza;
+- volto e dialogo sempre presenti;
+- sequenza molto più lenta;
+- testi più personali e umani;
+- un solo modulo alla volta;
+- conversazione disponibile solo dopo la dimostrazione;
+- test immediato senza API.

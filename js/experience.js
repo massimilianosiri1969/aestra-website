@@ -1,151 +1,109 @@
-const intro = document.getElementById("intro-scene");
-const os = document.getElementById("operating-system");
-const systemStatus = document.getElementById("system-status");
-const statusWrap = document.querySelector(".status");
-const canvasStatus = document.getElementById("canvas-status");
-const canvasStatusWrap = document.querySelector(".canvas-status");
-const moduleLabel = document.getElementById("module-label");
-const moduleTitle = document.getElementById("module-title");
-const moduleCopy = document.getElementById("module-copy");
-const daphneText = document.getElementById("daphne-text");
-const daphneState = document.getElementById("daphne-state");
-const dockButtons = [...document.querySelectorAll(".module-dock button")];
-const moduleViews = [...document.querySelectorAll(".module-view")];
-const form = document.getElementById("conversation-form");
-const input = document.getElementById("conversation-input");
-const quick = document.getElementById("quick-prompts");
-const restart = document.getElementById("restart");
+const systemStatus=document.getElementById("system-status");
+const statusWrap=document.querySelector(".status");
+const daphneState=document.getElementById("daphne-state");
+const daphneTitle=document.getElementById("daphne-title");
+const daphneCopy=document.getElementById("daphne-copy");
+const stepLabel=document.getElementById("step-label");
+const progress=document.getElementById("progress");
+const moduleLabel=document.getElementById("module-label");
+const moduleTitle=document.getElementById("module-title");
+const analysisStatus=document.getElementById("analysis-status");
+const navButtons=[...document.querySelectorAll(".module-nav button")];
+const moduleViews=[...document.querySelectorAll(".module-view")];
+const conversation=document.getElementById("conversation");
+const form=document.getElementById("conversation-form");
+const input=document.getElementById("conversation-input");
+const quick=document.getElementById("quick");
+const restart=document.getElementById("restart");
 
-const modules = {
-  agenda: {
-    label:"AGENDA",
-    title:"Oggi, per cabina.",
-    copy:"Sto cercando ciò che merita attenzione.",
-    daphne:"La cabina 3 può essere riempita oggi."
-  },
-  clients: {
-    label:"CLIENTI",
-    title:"Chi rischia di non tornare.",
-    copy:"Non una lista infinita. Solo chi merita attenzione oggi.",
-    daphne:"Sette clienti stanno entrando nella zona di inattività."
-  },
-  marketing: {
-    label:"MARKETING",
-    title:"Non serve parlare a tutte.",
-    copy:"Serve parlare alle persone giuste, nel momento giusto.",
-    daphne:"Preparerei una campagna solo per questo segmento."
-  },
-  stock: {
-    label:"MAGAZZINO",
-    title:"Quello che finirà prima.",
-    copy:"Le scorte diventano una previsione, non un’emergenza.",
-    daphne:"Due prodotti finiranno prima del previsto."
-  },
-  insights: {
-    label:"BUSINESS INTELLIGENCE",
-    title:"Capire, prima di decidere.",
-    copy:"Sto collegando saturazione, ritorno clienti e valore medio.",
-    daphne:"Il fatturato cresce, ma il ritorno clienti può crescere di più."
-  }
-};
+const scenes=[
+  {id:"agenda",step:"01 · Osservo",state:"DAPHNE STA GUARDANDO L’AGENDA",title:"Partirei da qui.",copy:"Vedo una finestra libera nella cabina 3. Prima di cercare nuovi clienti, proverei a riempire ciò che hai già disponibile.",label:"AGENDA",moduleTitle:"Guardo dove il centro perde tempo.",duration:4500,progress:25},
+  {id:"clients",step:"02 · Collego",state:"DAPHNE STA COLLEGANDO I DATI",title:"Aspetta.",copy:"Queste sette clienti stanno entrando nella zona di inattività. È qui che il centro può perdere fatturato senza accorgersene.",label:"CLIENTI",moduleTitle:"Cerco chi rischia di non tornare.",duration:5000,progress:50},
+  {id:"marketing",step:"03 · Agisco",state:"DAPHNE PREPARA UN’AZIONE",title:"Non parlerei a tutte.",copy:"Preparerei una comunicazione diversa solo per chi ha davvero motivo di tornare adesso.",label:"MARKETING",moduleTitle:"Scelgo chi contattare e come.",duration:5000,progress:75},
+  {id:"insights",step:"04 · Decido",state:"DAPHNE INTERPRETA I NUMERI",title:"Ora il quadro è più chiaro.",copy:"Il fatturato sta crescendo, ma il ritorno clienti può crescere di più. È da lì che inizierei domani mattina.",label:"BUSINESS INTELLIGENCE",moduleTitle:"Collego i numeri prima di decidere.",duration:5500,progress:100}
+];
 
 function showModule(id){
-  const meta = modules[id];
-  dockButtons.forEach(b => b.classList.toggle("active", b.dataset.module === id));
-  moduleViews.forEach(v => v.classList.toggle("active", v.id === `module-${id}`));
-  moduleLabel.textContent = meta.label;
-  moduleTitle.textContent = meta.title;
-  moduleCopy.textContent = meta.copy;
-  daphneText.textContent = meta.daphne;
+  navButtons.forEach(b=>b.classList.toggle("active",b.dataset.module===id));
+  moduleViews.forEach(v=>v.classList.toggle("active",v.id===`module-${id}`));
 }
 
-function runDemo(){
-  setTimeout(()=>{
-    intro.classList.add("hide");
-    os.classList.add("show");
-    systemStatus.textContent = "Daphne sta osservando il centro";
-  },2200);
-
-  const sequence = [
-    ["agenda", 3300],
-    ["clients", 5200],
-    ["marketing", 7100],
-    ["insights", 9000],
-    ["agenda", 10900]
-  ];
-
-  sequence.forEach(([id, delay])=>{
-    setTimeout(()=>{
-      canvasStatus.textContent = "Daphne sta lavorando";
-      showModule(id);
-    },delay);
-  });
-
-  setTimeout(()=>{
-    canvasStatus.textContent = "Analisi pronta";
-    canvasStatusWrap.classList.add("ready");
-    systemStatus.textContent = "Daphne è pronta";
+function runScene(index){
+  const scene=scenes[index];
+  if(!scene){
+    daphneState.textContent="DAPHNE";
+    daphneTitle.textContent="Adesso raccontami il tuo centro.";
+    daphneCopy.textContent="Ho voluto mostrarti come lavoro. Ora voglio capire se posso farlo anche per te.";
+    stepLabel.textContent="05 · Ti ascolto";
+    systemStatus.textContent="Daphne è pronta";
     statusWrap.classList.add("ready");
-    daphneState.textContent = "DAPHNE";
-    daphneText.textContent = "Adesso raccontami il tuo centro.";
-  },12000);
+    analysisStatus.textContent="Dimostrazione conclusa";
+    conversation.classList.add("show");
+    return;
+  }
+
+  showModule(scene.id);
+  stepLabel.textContent=scene.step;
+  daphneState.textContent=scene.state;
+  daphneTitle.textContent=scene.title;
+  daphneCopy.textContent=scene.copy;
+  moduleLabel.textContent=scene.label;
+  moduleTitle.textContent=scene.moduleTitle;
+  analysisStatus.textContent="Daphne sta lavorando";
+  progress.style.width=`${scene.progress}%`;
+
+  setTimeout(()=>runScene(index+1),scene.duration);
 }
 
-runDemo();
+setTimeout(()=>runScene(0),1800);
 
-dockButtons.forEach(button=>{
-  button.addEventListener("click",()=>showModule(button.dataset.module));
-});
+navButtons.forEach(button=>button.addEventListener("click",()=>showModule(button.dataset.module)));
 
 function moduleFor(text){
-  const t = text.toLowerCase();
-  if(t.includes("agenda") || t.includes("cabine")) return "agenda";
-  if(t.includes("client") || t.includes("ritorno")) return "clients";
+  const t=text.toLowerCase();
+  if(t.includes("agenda")||t.includes("cabine")) return "agenda";
+  if(t.includes("client")||t.includes("ritorno")) return "clients";
   if(t.includes("marketing")) return "marketing";
-  if(t.includes("magazzino") || t.includes("prodotti")) return "stock";
-  if(t.includes("fatturato") || t.includes("numer") || t.includes("margine")) return "insights";
+  if(t.includes("fatturato")||t.includes("numer")||t.includes("margine")) return "insights";
   return "agenda";
 }
 
 function replyFor(text){
-  const t = text.toLowerCase();
-  if(t.includes("cabine") || t.includes("collaboratric")){
-    return "Ho iniziato a costruire il profilo del tuo centro. Ora voglio capire se il problema principale riguarda agenda, clienti o fatturato.";
+  const t=text.toLowerCase();
+  if(t.includes("cabine")||t.includes("collaboratric")){
+    return "Ho iniziato a immaginare la struttura del tuo centro. Ora voglio capire se il problema più importante riguarda agenda, ritorno clienti o fatturato.";
   }
-  if(t.includes("non tornano") || t.includes("ritorno")){
-    return "Sto guardando le clienti a rischio. Dentro AESTRA potrei individuarle automaticamente ogni giorno.";
+  if(t.includes("non tornano")||t.includes("ritorno")){
+    return "Questa è una priorità concreta. Dentro AESTRA potrei individuare ogni giorno chi rischia di non tornare e suggerirti quando intervenire.";
   }
   if(t.includes("fatturato")){
-    return "Sto aprendo Business Intelligence. Per una risposta seria devo collegare saturazione, valore medio e ritorno clienti.";
+    return "Per capirlo davvero devo collegare saturazione, valore medio e ritorno clienti. È esattamente ciò che farei sui tuoi dati reali.";
   }
-  return "Ti ascolto. Dimmi quante cabine avete e qual è oggi il problema più urgente.";
+  return "Ti ascolto. Dimmi quante cabine avete e qual è oggi il problema che ti pesa di più.";
 }
 
 form.addEventListener("submit",event=>{
   event.preventDefault();
-  const value = input.value.trim();
+  const value=input.value.trim();
   if(!value) return;
-
-  const target = moduleFor(value);
-  daphneState.textContent = "DAPHNE STA LAVORANDO";
-  daphneText.textContent = "Sto collegando ciò che mi hai raccontato al software.";
-  canvasStatus.textContent = "Analisi in corso";
-  canvasStatusWrap.classList.remove("ready");
-  showModule(target);
-  input.value = "";
-
+  showModule(moduleFor(value));
+  daphneState.textContent="DAPHNE STA PENSANDO";
+  daphneTitle.textContent="Fammi collegare quello che mi hai detto.";
+  daphneCopy.textContent="Sto costruendo una prima lettura del tuo centro.";
+  analysisStatus.textContent="Prima lettura in corso";
+  input.value="";
   setTimeout(()=>{
-    daphneState.textContent = "PRIMA LETTURA";
-    daphneText.textContent = replyFor(value);
-    canvasStatus.textContent = "Analisi pronta";
-    canvasStatusWrap.classList.add("ready");
-  },1300);
+    daphneState.textContent="PRIMA LETTURA";
+    daphneTitle.textContent=replyFor(value);
+    daphneCopy.textContent="Sul sito posso mostrarti il metodo. Dentro AESTRA lavorerei sui dati reali.";
+    analysisStatus.textContent="Prima lettura pronta";
+  },1800);
 });
 
 quick.addEventListener("click",event=>{
-  const button = event.target.closest("[data-prompt]");
-  if(!button) return;
-  input.value = button.dataset.prompt;
+  const button=event.target.closest("[data-prompt]");
+  if(!button)return;
+  input.value=button.dataset.prompt;
   input.focus();
 });
 

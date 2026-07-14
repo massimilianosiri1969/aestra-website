@@ -6,7 +6,7 @@
     <h1>Il tuo centro.<br><em>Finalmente, tutto insieme.</em></h1>
     <p>AESTRA riunisce agenda, clienti, team, trattamenti, marketing, magazzino e numeri. Daphne li collega e trasforma il software in una presenza operativa quotidiana.</p>
     <div class="hero-actions">
-      <a class="btn primary large" href="esperienza.html">Parla con Daphne</a>
+      <a class="btn primary large" href="#home-daphne" id="focus-daphne">Parla con Daphne</a>
       <a class="btn ghost large" href="piattaforma.html">Scopri cosa fa AESTRA</a>
     </div>
     <div class="hero-proof">
@@ -59,23 +59,40 @@
             <div class="agenda-row"><b>Cabina 4</b><i class="slot s8">Corpo</i><i class="slot s9">Laser</i></div>
           </section>
 
-          <section class="daphne-live">
-            <div class="daphne-live-head">
-              <div class="daphne-avatar-wrap"><img src="assets/images/daphne-portrait.webp" alt="Daphne"></div>
-              <div><strong>Daphne</strong><small>Digital AESTRA Specialist</small></div>
-              <span class="live-dot">online</span>
-            </div>
-            <div class="daphne-message">
-              <small>IL MIO BRIEFING PER TE</small>
-              <p id="hero-daphne-message">Ciao, sono Daphne. Raccontami come lavori e proverò a capire se posso aiutarti.</p>
-            </div>
-            <div class="daphne-actions">
-              <div><span>01</span><p><strong>Riattiva 7 clienti</strong><small>Alta probabilità di ritorno</small></p></div>
-              <div><span>02</span><p><strong>Riempi la cabina 3</strong><small>Fascia libera alle 15:30</small></p></div>
-              <div><span>03</span><p><strong>Controlla il percorso corpo</strong><small>Margine sotto la media</small></p></div>
-            </div>
-            <a class="daphne-chat-link" href="esperienza.html">Inizia a parlare con me <span>→</span></a>
-          </section>
+          <section class="daphne-live daphne-live-interactive" id="home-daphne">
+  <div class="daphne-live-head">
+    <div class="daphne-avatar-wrap"><img src="assets/images/daphne-portrait.webp" alt="Daphne"></div>
+    <div><strong>Daphne</strong><small>Digital AESTRA Specialist</small></div>
+    <span class="live-dot" id="home-ai-status">online</span>
+  </div>
+
+  <div class="home-chat-log" id="home-chat-log" aria-live="polite">
+    <div class="home-chat-message daphne">
+      <span>DAPHNE</span>
+      <p>Ciao, sono Daphne. Raccontami come lavori e proverò a capire se posso aiutarti.</p>
+    </div>
+  </div>
+
+  <div class="home-memory" id="home-memory">
+    <span id="hm-center">Centro da conoscere</span>
+    <span id="hm-team">Team —</span>
+    <span id="hm-cabins">Cabine —</span>
+    <span id="hm-goal">Obiettivo da definire</span>
+  </div>
+
+  <form class="home-chat-form" id="home-chat-form">
+    <textarea id="home-chat-input" rows="2" maxlength="1800" placeholder="Raccontami il tuo centro..."></textarea>
+    <div class="home-chat-footer">
+      <small id="home-char-count">0 / 1800</small>
+      <button type="submit">Invia <span>→</span></button>
+    </div>
+  </form>
+
+  <div class="home-chat-suggestions" id="home-chat-suggestions">
+    <button type="button" data-home-prompt="Ho un centro estetico con 4 cabine e 6 collaboratrici.">4 cabine e 6 collaboratrici</button>
+    <button type="button" data-home-prompt="Molte clienti non tornano dopo il primo trattamento.">Le clienti non tornano</button>
+  </div>
+</section>
 
           <section class="performance-panel">
             <div class="panel-title"><div><small>ANDAMENTO</small><strong>Ultime 8 settimane</strong></div><span>+18,4%</span></div>
@@ -97,4 +114,4 @@
 <section class="daphne-operates"><div class="operate-copy"><span class="eyebrow light">DAPHNE È DENTRO IL SOFTWARE</span><h2>Non ti mostra solo i dati.<br><em>Li usa insieme.</em></h2><p>Quando l’agenda cambia, un cliente non torna o un trattamento rende meno del previsto, Daphne collega le informazioni e porta in primo piano la decisione utile.</p><a class="btn light" href="daphne.html">Guarda una giornata con Daphne</a></div><div class="operate-flow"><div><span>08:00</span><strong>Controlla agenda e priorità</strong><small>2 cabine con capacità libera</small></div><div><span>10:30</span><strong>Individua clienti da recuperare</strong><small>7 profili con alta probabilità di ritorno</small></div><div><span>14:15</span><strong>Confronta trattamenti e margini</strong><small>Una proposta da rivedere</small></div><div><span>18:30</span><strong>Prepara il briefing di domani</strong><small>Tre azioni, ordinate per impatto</small></div></div></section>
 <section class="module-marquee"><span>Agenda</span><span>Clienti</span><span>Beauty Journey</span><span>Marketing</span><span>Personale</span><span>Magazzino</span><span>Statistiche</span><span>App Cliente</span><span>Business Intelligence</span></section>
 <section class="cta-band"><span class="eyebrow">PROVALA SUL SITO. ASSUMILA DENTRO AESTRA.</span><h2>Prima conosce il tuo centro.<br><em>Poi inizia a lavorare.</em></h2><div><a class="btn primary large" href="esperienza.html">Inizia la conversazione</a><a class="btn ghost large" href="demo.html">Prenota una demo</a></div></section>
-</main><footer class="site-footer"><div><img src="assets/icons/logo.svg" alt="AESTRA"><p>Il sistema operativo intelligente per i centri estetici.</p></div><div class="footer-links"><a href="piattaforma.html">Piattaforma</a><a href="moduli.html">Moduli</a><a href="esperienza.html">Parla con Daphne</a><a href="demo.html">Demo</a></div><small>© 2026 AESTRA Technologies</small></footer><script src="js/site-v3.js"></script></body></html>
+</main><footer class="site-footer"><div><img src="assets/icons/logo.svg" alt="AESTRA"><p>Il sistema operativo intelligente per i centri estetici.</p></div><div class="footer-links"><a href="piattaforma.html">Piattaforma</a><a href="moduli.html">Moduli</a><a href="esperienza.html">Parla con Daphne</a><a href="demo.html">Demo</a></div><small>© 2026 AESTRA Technologies</small></footer><script src="js/site-v3.js"></script><script src="js/home-daphne.js"></script></body></html>

@@ -294,3 +294,144 @@
   .agenda-hours,.agenda-row{min-width:720px}
   .daphne-message p{font-size:22px}
 }
+
+/* =========================================================
+   AESTRA V5 — interactive Daphne inside the cockpit
+   ========================================================= */
+.daphne-live-interactive{
+  display:flex;
+  flex-direction:column;
+  min-height:100%;
+}
+.home-chat-log{
+  min-height:190px;
+  max-height:255px;
+  overflow-y:auto;
+  padding:16px;
+  scroll-behavior:smooth;
+}
+.home-chat-message{
+  margin-bottom:12px;
+  padding:12px 13px;
+  border-radius:14px;
+}
+.home-chat-message span{
+  display:block;
+  margin-bottom:6px;
+  font-size:7px;
+  letter-spacing:.14em;
+}
+.home-chat-message p{
+  margin:0;
+  white-space:pre-line;
+  font:500 17px/1.25 "Cormorant Garamond",serif;
+}
+.home-chat-message.daphne{
+  margin-right:18px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.08);
+}
+.home-chat-message.daphne span{color:#e7aaa7}
+.home-chat-message.user{
+  margin-left:34px;
+  background:#d67983;
+  color:#fff;
+}
+.home-chat-message.user span{color:#ffe5e2}
+.home-chat-message.error{
+  background:rgba(193,83,91,.18);
+  border:1px solid rgba(255,187,187,.18);
+}
+.home-memory{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  padding:0 16px 11px;
+}
+.home-memory span{
+  padding:6px 8px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:999px;
+  background:rgba(255,255,255,.04);
+  color:#cdb8b3;
+  font-size:7px;
+}
+.home-memory span.known{
+  border-color:rgba(231,170,167,.30);
+  color:#f2d5d0;
+  background:rgba(214,121,131,.10);
+}
+.home-chat-form{
+  margin:0 15px;
+  padding:10px;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:14px;
+  background:rgba(255,255,255,.07);
+}
+.home-chat-form textarea{
+  width:100%;
+  min-height:48px;
+  box-sizing:border-box;
+  resize:none;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:#fff;
+  font:12px/1.45 "DM Sans",sans-serif;
+}
+.home-chat-form textarea::placeholder{color:#bfa8a3}
+.home-chat-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:7px;
+}
+.home-chat-footer small{color:#aa928d;font-size:7px}
+.home-chat-footer button{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 11px;
+  border:0;
+  border-radius:999px;
+  background:#d67983;
+  color:#fff;
+  font:600 8px "DM Sans",sans-serif;
+  cursor:pointer;
+}
+.home-chat-footer button:disabled{opacity:.55;cursor:wait}
+.home-chat-suggestions{
+  display:flex;
+  gap:6px;
+  padding:10px 15px 15px;
+}
+.home-chat-suggestions button{
+  flex:1;
+  padding:8px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:10px;
+  background:transparent;
+  color:#cab4af;
+  font:7px/1.25 "DM Sans",sans-serif;
+  cursor:pointer;
+}
+.home-chat-suggestions button:hover{
+  border-color:rgba(231,170,167,.34);
+  color:#fff;
+}
+.daphne-live-interactive.thinking .daphne-avatar-wrap{
+  box-shadow:0 0 0 6px rgba(214,121,131,.10),0 0 28px rgba(214,121,131,.24);
+}
+.cockpit-react{
+  animation:cockpitReact .65s ease;
+}
+@keyframes cockpitReact{
+  0%{transform:translateY(4px);opacity:.55}
+  100%{transform:translateY(0);opacity:1}
+}
+@media(max-width:720px){
+  .home-chat-log{max-height:310px}
+  .home-chat-suggestions{display:grid;grid-template-columns:1fr}
+  .home-chat-message p{font-size:18px}
+}

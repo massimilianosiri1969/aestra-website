@@ -1,6 +1,6 @@
 {
-  "name": "aestra-website-v4-rebuilt-hero",
-  "version": "4.0.0",
+  "name": "aestra-website-v5-interactive-daphne",
+  "version": "5.0.0",
   "private": true,
   "type": "module",
   "engines": {

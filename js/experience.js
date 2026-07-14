@@ -1,5 +1,4 @@
 const systemStatus=document.getElementById("system-status");
-const statusWrap=document.querySelector(".status");
 const daphneState=document.getElementById("daphne-state");
 const daphneTitle=document.getElementById("daphne-title");
 const daphneCopy=document.getElementById("daphne-copy");
@@ -10,38 +9,34 @@ const moduleTitle=document.getElementById("module-title");
 const analysisStatus=document.getElementById("analysis-status");
 const navButtons=[...document.querySelectorAll(".module-nav button")];
 const moduleViews=[...document.querySelectorAll(".module-view")];
-const conversation=document.getElementById("conversation");
 const form=document.getElementById("conversation-form");
 const input=document.getElementById("conversation-input");
 const quick=document.getElementById("quick");
+const pauseButton=document.getElementById("pause");
+const prevButton=document.getElementById("prev");
+const nextButton=document.getElementById("next");
 const restart=document.getElementById("restart");
 
 const scenes=[
-  {id:"agenda",step:"01 · Osservo",state:"DAPHNE STA GUARDANDO L’AGENDA",title:"Partirei da qui.",copy:"Vedo una finestra libera nella cabina 3. Prima di cercare nuovi clienti, proverei a riempire ciò che hai già disponibile.",label:"AGENDA",moduleTitle:"Guardo dove il centro perde tempo.",duration:4500,progress:25},
-  {id:"clients",step:"02 · Collego",state:"DAPHNE STA COLLEGANDO I DATI",title:"Aspetta.",copy:"Queste sette clienti stanno entrando nella zona di inattività. È qui che il centro può perdere fatturato senza accorgersene.",label:"CLIENTI",moduleTitle:"Cerco chi rischia di non tornare.",duration:5000,progress:50},
-  {id:"marketing",step:"03 · Agisco",state:"DAPHNE PREPARA UN’AZIONE",title:"Non parlerei a tutte.",copy:"Preparerei una comunicazione diversa solo per chi ha davvero motivo di tornare adesso.",label:"MARKETING",moduleTitle:"Scelgo chi contattare e come.",duration:5000,progress:75},
-  {id:"insights",step:"04 · Decido",state:"DAPHNE INTERPRETA I NUMERI",title:"Ora il quadro è più chiaro.",copy:"Il fatturato sta crescendo, ma il ritorno clienti può crescere di più. È da lì che inizierei domani mattina.",label:"BUSINESS INTELLIGENCE",moduleTitle:"Collego i numeri prima di decidere.",duration:5500,progress:100}
+  {id:"agenda",step:"01 · Agenda",state:"DAPHNE OSSERVA",title:"Partirei da qui.",copy:"Vedo una finestra libera nella cabina 3. Prima di cercare nuovi clienti, proverei a riempire ciò che hai già disponibile.",label:"AGENDA",moduleTitle:"Guardo dove il centro perde tempo."},
+  {id:"clients",step:"02 · Clienti",state:"DAPHNE COLLEGA",title:"Aspetta.",copy:"Queste sette clienti stanno entrando nella zona di inattività. È qui che il centro può perdere fatturato senza accorgersene.",label:"CLIENTI",moduleTitle:"Cerco chi rischia di non tornare."},
+  {id:"marketing",step:"03 · Marketing",state:"DAPHNE AGISCE",title:"Non parlerei a tutte.",copy:"Preparerei una comunicazione diversa solo per chi ha davvero motivo di tornare adesso.",label:"MARKETING",moduleTitle:"Scelgo chi contattare e come."},
+  {id:"insights",step:"04 · Numeri",state:"DAPHNE INTERPRETA",title:"Ora il quadro è più chiaro.",copy:"Il fatturato sta crescendo, ma il ritorno clienti può crescere di più. È da lì che inizierei domani mattina.",label:"BUSINESS INTELLIGENCE",moduleTitle:"Collego i numeri prima di decidere."}
 ];
+
+let current=0;
+let paused=false;
+let timer=null;
+const sceneDuration=11000;
 
 function showModule(id){
   navButtons.forEach(b=>b.classList.toggle("active",b.dataset.module===id));
   moduleViews.forEach(v=>v.classList.toggle("active",v.id===`module-${id}`));
 }
 
-function runScene(index){
-  const scene=scenes[index];
-  if(!scene){
-    daphneState.textContent="DAPHNE";
-    daphneTitle.textContent="Adesso raccontami il tuo centro.";
-    daphneCopy.textContent="Ho voluto mostrarti come lavoro. Ora voglio capire se posso farlo anche per te.";
-    stepLabel.textContent="05 · Ti ascolto";
-    systemStatus.textContent="Daphne è pronta";
-    statusWrap.classList.add("ready");
-    analysisStatus.textContent="Dimostrazione conclusa";
-    conversation.classList.add("show");
-    return;
-  }
-
+function renderScene(index, schedule=true){
+  current=(index+scenes.length)%scenes.length;
+  const scene=scenes[current];
   showModule(scene.id);
   stepLabel.textContent=scene.step;
   daphneState.textContent=scene.state;
@@ -50,14 +45,43 @@ function runScene(index){
   moduleLabel.textContent=scene.label;
   moduleTitle.textContent=scene.moduleTitle;
   analysisStatus.textContent="Daphne sta lavorando";
-  progress.style.width=`${scene.progress}%`;
+  progress.style.width=`${((current+1)/scenes.length)*100}%`;
+  systemStatus.textContent="Daphne è pronta";
 
-  setTimeout(()=>runScene(index+1),scene.duration);
+  clearTimeout(timer);
+  if(schedule && !paused){
+    timer=setTimeout(()=>renderScene(current+1,true),sceneDuration);
+  }
 }
 
-setTimeout(()=>runScene(0),1800);
+renderScene(0,true);
 
-navButtons.forEach(button=>button.addEventListener("click",()=>showModule(button.dataset.module)));
+pauseButton.addEventListener("click",()=>{
+  paused=!paused;
+  pauseButton.textContent=paused?"Riprendi":"Pausa";
+  if(paused){
+    clearTimeout(timer);
+  }else{
+    renderScene(current,true);
+  }
+});
+
+prevButton.addEventListener("click",()=>{
+  clearTimeout(timer);
+  renderScene(current-1,!paused);
+});
+nextButton.addEventListener("click",()=>{
+  clearTimeout(timer);
+  renderScene(current+1,!paused);
+});
+
+navButtons.forEach(button=>button.addEventListener("click",()=>{
+  paused=true;
+  pauseButton.textContent="Riprendi";
+  clearTimeout(timer);
+  const index=scenes.findIndex(s=>s.id===button.dataset.module);
+  renderScene(index,false);
+}));
 
 function moduleFor(text){
   const t=text.toLowerCase();
@@ -85,19 +109,28 @@ function replyFor(text){
 form.addEventListener("submit",event=>{
   event.preventDefault();
   const value=input.value.trim();
-  if(!value) return;
-  showModule(moduleFor(value));
+  if(!value)return;
+
+  paused=true;
+  pauseButton.textContent="Riprendi";
+  clearTimeout(timer);
+
+  const target=moduleFor(value);
+  const index=scenes.findIndex(s=>s.id===target);
+  renderScene(index,false);
+
   daphneState.textContent="DAPHNE STA PENSANDO";
   daphneTitle.textContent="Fammi collegare quello che mi hai detto.";
   daphneCopy.textContent="Sto costruendo una prima lettura del tuo centro.";
   analysisStatus.textContent="Prima lettura in corso";
   input.value="";
+
   setTimeout(()=>{
     daphneState.textContent="PRIMA LETTURA";
     daphneTitle.textContent=replyFor(value);
     daphneCopy.textContent="Sul sito posso mostrarti il metodo. Dentro AESTRA lavorerei sui dati reali.";
     analysisStatus.textContent="Prima lettura pronta";
-  },1800);
+  },2200);
 });
 
 quick.addEventListener("click",event=>{

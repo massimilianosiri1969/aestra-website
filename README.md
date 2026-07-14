@@ -1,10 +1,10 @@
-# AESTRA Experience V2 — Daphne
+# AESTRA Experience V3 — Interactive Slow
 
-Correzioni principali:
-- Daphne grande e visibile per tutta l’esperienza;
-- volto e dialogo sempre presenti;
-- sequenza molto più lenta;
-- testi più personali e umani;
-- un solo modulo alla volta;
-- conversazione disponibile solo dopo la dimostrazione;
-- test immediato senza API.
+Correzioni:
+- volto corretto di Daphne;
+- Daphne sempre visibile;
+- interazione disponibile immediatamente;
+- sequenza rallentata a 11 secondi per scena;
+- pulsanti Pausa, Riprendi, Avanti e Indietro;
+- clic manuale sui moduli;
+- la conversazione interrompe automaticamente la demo.

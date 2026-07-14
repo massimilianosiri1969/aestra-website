@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>AESTRA — Daphne Experience</title>
-  <meta name="description" content="AESTRA e Daphne: un nuovo modo di gestire il centro estetico.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -17,26 +16,44 @@
         <span class="brand-symbol">A</span>
         <div><strong>AESTRA</strong><small>Beauty Operating System</small></div>
       </div>
-      <div class="status"><i></i><span id="system-status">Daphne si sta collegando</span></div>
-      <button id="restart">Ricomincia</button>
+      <div class="status"><i></i><span id="system-status">Daphne è pronta</span></div>
+      <div class="top-actions">
+        <button id="pause">Pausa</button>
+        <button id="restart">Ricomincia</button>
+      </div>
     </header>
 
     <section class="stage">
       <aside class="daphne-stage">
-        <div class="portrait-wrap">
-          <div class="portrait-aura"></div>
-          <img src="assets/daphne.png" alt="Daphne, Digital AESTRA Specialist">
+        <div class="portrait">
+          <img src="assets/daphne.png" alt="Daphne">
+          <div class="portrait-fade"></div>
         </div>
 
-        <div class="daphne-dialogue">
+        <div class="dialogue">
           <small id="daphne-state">DAPHNE</small>
           <h1 id="daphne-title">Ciao, sono Daphne.</h1>
-          <p id="daphne-copy">Prima di raccontarti AESTRA, voglio farti vedere come lavorerei con te.</p>
+          <p id="daphne-copy">Raccontami come lavori e proverò a capire se posso aiutarti.</p>
         </div>
 
-        <div class="sequence-progress">
-          <span id="step-label">01 · Ti ascolto</span>
-          <div><i id="progress"></i></div>
+        <form class="conversation" id="conversation-form">
+          <input id="conversation-input" maxlength="500" autocomplete="off" placeholder="Inizia da dove preferisci…">
+          <button type="submit">Parla con Daphne <span>→</span></button>
+        </form>
+
+        <div class="quick" id="quick">
+          <button data-prompt="Ho 4 cabine e 6 collaboratrici.">4 cabine e 6 collaboratrici</button>
+          <button data-prompt="Le clienti non tornano.">Le clienti non tornano</button>
+          <button data-prompt="Voglio aumentare il fatturato.">Aumentare il fatturato</button>
+        </div>
+
+        <div class="sequence-controls">
+          <button id="prev">←</button>
+          <div>
+            <span id="step-label">01 · Agenda</span>
+            <div class="progress"><i id="progress"></i></div>
+          </div>
+          <button id="next">→</button>
         </div>
       </aside>
 
@@ -65,10 +82,7 @@
               <div class="agenda-row"><b>Cabina 3</b><i class="slot sand s6">Epilazione</i><i class="slot free s7">15:30 libera</i><i class="slot lilac s8">Viso</i></div>
               <div class="agenda-row"><b>Cabina 4</b><i class="slot rose s9">Corpo</i><i class="slot green s10">Laser</i></div>
             </div>
-            <div class="insight-note">
-              <small>HO TROVATO</small>
-              <strong>Una finestra che può essere riempita oggi.</strong>
-            </div>
+            <div class="insight-note"><small>HO TROVATO</small><strong>Una finestra che può essere riempita oggi.</strong></div>
           </div>
 
           <div class="module-view" id="module-clients">
@@ -77,29 +91,23 @@
               <article><span>SC</span><div><strong>Sara C.</strong><small>Pacchetto viso quasi concluso</small></div><b>Da contattare</b></article>
               <article><span>AL</span><div><strong>Anna L.</strong><small>Follow-up mancante</small></div><b>Oggi</b></article>
             </div>
-            <div class="insight-note">
-              <small>HO TROVATO</small>
-              <strong>Sette clienti che rischiano di non tornare.</strong>
-            </div>
+            <div class="insight-note"><small>HO TROVATO</small><strong>Sette clienti che rischiano di non tornare.</strong></div>
           </div>
 
           <div class="module-view" id="module-marketing">
             <div class="campaign">
               <small>SEGMENTO CONSIGLIATO</small>
               <h3>Clienti inattive da 45–90 giorni</h3>
-              <p>Non invierei lo stesso messaggio a tutte. Preparerei una comunicazione personale, legata al trattamento precedente.</p>
+              <p>Preparerei una comunicazione personale, legata al trattamento precedente.</p>
               <div class="campaign-preview"><span>Anteprima</span><strong>“È passato un po’ di tempo…”</strong></div>
               <button>Prepara campagna</button>
             </div>
-            <div class="insight-note">
-              <small>HO DECISO</small>
-              <strong>Chi contattare, quando e con quale messaggio.</strong>
-            </div>
+            <div class="insight-note"><small>HO DECISO</small><strong>Chi contattare, quando e con quale messaggio.</strong></div>
           </div>
 
           <div class="module-view" id="module-insights">
             <div class="chart">
-              <svg viewBox="0 0 900 300" aria-label="Andamento">
+              <svg viewBox="0 0 900 300">
                 <defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c96f78" stop-opacity=".28"/><stop offset="1" stop-color="#c96f78" stop-opacity="0"/></linearGradient></defs>
                 <path class="chart-area" d="M0 246 C95 234,140 162,225 187 C306 210,360 112,438 142 C528 176,568 91,660 109 C744 126,793 58,900 45 L900 300 L0 300Z"/>
                 <path class="chart-line" d="M0 246 C95 234,140 162,225 187 C306 210,360 112,438 142 C528 176,568 91,660 109 C744 126,793 58,900 45"/>
@@ -110,32 +118,12 @@
                 <span><strong>82%</strong><small>occupazione</small></span>
               </div>
             </div>
-            <div class="insight-note">
-              <small>LA MIA LETTURA</small>
-              <strong>Il fatturato cresce, ma il ritorno clienti può crescere di più.</strong>
-            </div>
+            <div class="insight-note"><small>LA MIA LETTURA</small><strong>Il fatturato cresce, ma il ritorno clienti può crescere di più.</strong></div>
           </div>
-
-          <section class="conversation" id="conversation">
-            <div>
-              <small>ADESSO RACCONTAMI IL TUO CENTRO</small>
-              <h2>Voglio capire se posso aiutarti davvero.</h2>
-            </div>
-            <form id="conversation-form">
-              <input id="conversation-input" maxlength="500" autocomplete="off" placeholder="Inizia da dove preferisci…">
-              <button type="submit">Parla con Daphne <span>→</span></button>
-            </form>
-            <div class="quick" id="quick">
-              <button data-prompt="Ho 4 cabine e 6 collaboratrici.">4 cabine e 6 collaboratrici</button>
-              <button data-prompt="Le clienti non tornano.">Le clienti non tornano</button>
-              <button data-prompt="Voglio aumentare il fatturato.">Aumentare il fatturato</button>
-            </div>
-          </section>
         </div>
       </section>
     </section>
   </main>
-
   <script src="js/experience.js"></script>
 </body>
 </html>

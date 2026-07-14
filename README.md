@@ -1,9 +1,18 @@
-# AESTRA Live Demo V2
+# AESTRA Experience V1
 
-Nuova regia:
+Nuovo progetto autonomo, riscritto da zero.
+
+## Regia
+- apertura cinematografica;
+- AESTRA si accende;
+- Daphne osserva e cambia modulo da sola;
 - un solo modulo protagonista alla volta;
-- nessun mosaico di pannelli sovrapposti;
-- nessuna grande finestra chat;
-- Daphne appare come presenza ambientale;
-- il software cambia vista in risposta alle parole dell’utente;
-- test immediato senza API.
+- niente dashboard statica;
+- niente grande finestra-chat;
+- solo alla fine compare l’invito a raccontare il proprio centro;
+- risposta del software alle parole dell’utente.
+
+## Test
+Caricare tutti i file nella root di un repository GitHub collegato a Vercel.
+
+La demo funziona senza API.

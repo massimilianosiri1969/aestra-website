@@ -2,161 +2,179 @@
 <html lang="it">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AESTRA Live Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AESTRA Experience</title>
+  <meta name="description" content="AESTRA: il sistema operativo intelligente per i centri estetici.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/live.css">
+  <link rel="stylesheet" href="css/experience.css">
 </head>
 <body>
-  <main class="app">
+  <main class="experience">
     <header class="topbar">
       <div class="brand">
-        <span class="brand-mark">A</span>
-        <div><strong>AESTRA</strong><small>Centro Aurora</small></div>
+        <span class="brand-symbol">A</span>
+        <div>
+          <strong>AESTRA</strong>
+          <small>Beauty Operating System</small>
+        </div>
       </div>
-      <div class="top-status"><i></i><span id="top-status">Daphne sta osservando il centro</span></div>
+      <div class="status"><i></i><span id="system-status">Inizializzazione</span></div>
       <button id="restart">Ricomincia</button>
     </header>
 
-    <aside class="rail">
-      <button class="active" data-view="today"><span>◫</span><small>Oggi</small></button>
-      <button data-view="agenda"><span>▦</span><small>Agenda</small></button>
-      <button data-view="clients"><span>♡</span><small>Clienti</small></button>
-      <button data-view="marketing"><span>↗</span><small>Marketing</small></button>
-      <button data-view="stock"><span>□</span><small>Stock</small></button>
-      <button data-view="insights"><span>⌁</span><small>BI</small></button>
-    </aside>
-
-    <section class="workspace">
-      <div class="daphne-banner" id="daphne-banner">
-        <div>
-          <small>DAPHNE</small>
-          <strong id="daphne-line">Ho trovato una cosa interessante.</strong>
+    <section class="stage">
+      <div class="intro-scene" id="intro-scene">
+        <div class="intro-copy">
+          <small>IL TUO CENTRO STA LAVORANDO.</small>
+          <h1>Ma sta davvero andando<br><em>nella direzione giusta?</em></h1>
+          <p>Dammi trenta secondi.</p>
         </div>
-        <span class="presence"></span>
       </div>
 
-      <div class="view-stack">
-        <section class="view active" id="view-today">
-          <div class="view-heading">
-            <small>DAILY BRIEFING</small>
-            <h1>Buongiorno, Francesca.</h1>
-            <p>Queste sono le tre cose che meritano attenzione oggi.</p>
+      <div class="operating-system" id="operating-system">
+        <aside class="module-dock">
+          <button class="active" data-module="agenda"><span>▦</span><small>Agenda</small></button>
+          <button data-module="clients"><span>♡</span><small>Clienti</small></button>
+          <button data-module="marketing"><span>↗</span><small>Marketing</small></button>
+          <button data-module="stock"><span>□</span><small>Stock</small></button>
+          <button data-module="insights"><span>⌁</span><small>BI</small></button>
+        </aside>
+
+        <section class="canvas">
+          <div class="canvas-head">
+            <div>
+              <small id="module-label">AGENDA</small>
+              <h2 id="module-title">Oggi, per cabina.</h2>
+              <p id="module-copy">Sto cercando ciò che merita attenzione.</p>
+            </div>
+            <div class="canvas-status"><i></i><span id="canvas-status">Analisi in corso</span></div>
           </div>
 
-          <div class="priority-grid">
-            <article class="priority-card primary">
-              <span>01</span>
-              <small>CLIENTI</small>
-              <h2>7 clienti stanno entrando nella zona di inattività.</h2>
-              <p>Il momento migliore per contattarle è oggi, non tra una settimana.</p>
-            </article>
-            <article class="priority-card">
-              <span>02</span>
-              <small>AGENDA</small>
-              <h2>Cabina 3 libera alle 15:30.</h2>
-              <p>È la finestra con la probabilità più alta di essere riempita.</p>
-            </article>
-            <article class="priority-card">
-              <span>03</span>
-              <small>MARGINALITÀ</small>
-              <h2>Il percorso corpo rende meno della media.</h2>
-              <p>Prima di promuoverlo, controllerei costi e durata.</p>
-            </article>
+          <div class="module-view agenda-view active" id="module-agenda">
+            <div class="agenda-board">
+              <div class="hours"><span>09</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span></div>
+              <div class="agenda-row"><b>Cabina 1</b><i class="slot rose s1">Viso</i><i class="slot sand s2">Laser</i><i class="slot lilac s3">Corpo</i></div>
+              <div class="agenda-row"><b>Cabina 2</b><i class="slot green s4">Massaggio</i><i class="slot rose s5">Trattamento</i></div>
+              <div class="agenda-row"><b>Cabina 3</b><i class="slot sand s6">Epilazione</i><i class="slot free s7">15:30 libera</i><i class="slot lilac s8">Viso</i></div>
+              <div class="agenda-row"><b>Cabina 4</b><i class="slot rose s9">Corpo</i><i class="slot green s10">Laser</i></div>
+            </div>
+            <div class="focus-note" id="agenda-note">
+              <small>DAPHNE HA NOTATO</small>
+              <strong>La cabina 3 può essere riempita oggi.</strong>
+            </div>
+          </div>
+
+          <div class="module-view clients-view" id="module-clients">
+            <div class="client-spotlight">
+              <article class="selected">
+                <span>EM</span>
+                <div><strong>Elena M.</strong><small>64 giorni dall’ultima visita</small></div>
+                <b>Alta priorità</b>
+              </article>
+              <article>
+                <span>SC</span>
+                <div><strong>Sara C.</strong><small>Pacchetto viso quasi concluso</small></div>
+                <b>Da contattare</b>
+              </article>
+              <article>
+                <span>AL</span>
+                <div><strong>Anna L.</strong><small>Follow-up mancante</small></div>
+                <b>Oggi</b>
+              </article>
+            </div>
+            <div class="focus-note">
+              <small>DAPHNE HA NOTATO</small>
+              <strong>Sette clienti stanno entrando nella zona di inattività.</strong>
+            </div>
+          </div>
+
+          <div class="module-view marketing-view" id="module-marketing">
+            <div class="campaign">
+              <small>SEGMENTO CONSIGLIATO</small>
+              <h3>Clienti inattive da 45–90 giorni</h3>
+              <p>Messaggio personale, richiamo al trattamento precedente e incentivo leggero.</p>
+              <div class="campaign-preview">
+                <span>Anteprima</span>
+                <strong>“È passato un po’ di tempo…”</strong>
+              </div>
+              <button>Prepara campagna</button>
+            </div>
+            <div class="focus-note">
+              <small>DAPHNE HA NOTATO</small>
+              <strong>Non serve parlare a tutte. Serve parlare alle persone giuste.</strong>
+            </div>
+          </div>
+
+          <div class="module-view stock-view" id="module-stock">
+            <div class="stock-grid">
+              <article><strong>Siero viso</strong><small>7 giorni residui</small><i style="--w:78%"></i></article>
+              <article><strong>Gel laser</strong><small>4 giorni residui</small><i style="--w:92%"></i></article>
+              <article><strong>Crema corpo</strong><small>14 giorni residui</small><i style="--w:52%"></i></article>
+            </div>
+            <div class="focus-note">
+              <small>DAPHNE HA NOTATO</small>
+              <strong>Due prodotti finiranno prima del previsto.</strong>
+            </div>
+          </div>
+
+          <div class="module-view insights-view" id="module-insights">
+            <div class="chart-wrap">
+              <svg viewBox="0 0 900 300" aria-label="Andamento">
+                <defs>
+                  <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#c96f78" stop-opacity=".28"/>
+                    <stop offset="1" stop-color="#c96f78" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path class="chart-area" d="M0 246 C95 234,140 162,225 187 C306 210,360 112,438 142 C528 176,568 91,660 109 C744 126,793 58,900 45 L900 300 L0 300Z"/>
+                <path class="chart-line" d="M0 246 C95 234,140 162,225 187 C306 210,360 112,438 142 C528 176,568 91,660 109 C744 126,793 58,900 45"/>
+              </svg>
+              <div class="kpi-row">
+                <span><strong>+18,4%</strong><small>fatturato</small></span>
+                <span><strong>+11%</strong><small>ritorno clienti</small></span>
+                <span><strong>82%</strong><small>occupazione</small></span>
+              </div>
+            </div>
+            <div class="focus-note">
+              <small>DAPHNE HA NOTATO</small>
+              <strong>Il fatturato cresce, ma il ritorno clienti può crescere di più.</strong>
+            </div>
           </div>
         </section>
 
-        <section class="view" id="view-agenda">
-          <div class="view-heading">
-            <small>AGENDA</small>
-            <h1>Oggi, per cabina.</h1>
-            <p>Daphne evidenzia i vuoti che vale la pena riempire.</p>
+        <div class="daphne-presence" id="daphne-presence">
+          <div class="daphne-light"></div>
+          <div class="daphne-mark">D</div>
+          <div class="daphne-copy">
+            <small id="daphne-state">DAPHNE</small>
+            <strong id="daphne-text">Ciao. Sono Daphne.</strong>
           </div>
-          <div class="agenda-board">
-            <div class="agenda-hours"><span>09</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span></div>
-            <div class="agenda-row"><b>Cabina 1</b><i class="slot rose s1">Viso</i><i class="slot sand s2">Laser</i><i class="slot lilac s3">Corpo</i></div>
-            <div class="agenda-row"><b>Cabina 2</b><i class="slot green s4">Massaggio</i><i class="slot rose s5">Trattamento</i></div>
-            <div class="agenda-row"><b>Cabina 3</b><i class="slot sand s6">Epilazione</i><i class="slot free s7">15:30 disponibile</i><i class="slot lilac s8">Viso</i></div>
-            <div class="agenda-row"><b>Cabina 4</b><i class="slot rose s9">Corpo</i><i class="slot green s10">Laser</i></div>
-          </div>
-        </section>
-
-        <section class="view" id="view-clients">
-          <div class="view-heading">
-            <small>CLIENTI</small>
-            <h1>Chi rischia di non tornare.</h1>
-            <p>Non una lista infinita: solo le persone su cui ha senso agire oggi.</p>
-          </div>
-          <div class="client-focus">
-            <article><span>EM</span><div><strong>Elena M.</strong><small>64 giorni dall’ultima visita</small></div><b>Alta priorità</b></article>
-            <article><span>SC</span><div><strong>Sara C.</strong><small>Pacchetto viso quasi concluso</small></div><b>Da contattare</b></article>
-            <article><span>AL</span><div><strong>Anna L.</strong><small>Follow-up mancante</small></div><b>Oggi</b></article>
-          </div>
-        </section>
-
-        <section class="view" id="view-marketing">
-          <div class="view-heading">
-            <small>MARKETING</small>
-            <h1>Non più messaggi a tutti.</h1>
-            <p>Daphne prepara la comunicazione giusta per il segmento giusto.</p>
-          </div>
-          <div class="campaign-card">
-            <small>SEGMENTO CONSIGLIATO</small>
-            <h2>Clienti inattive da 45–90 giorni</h2>
-            <p>Messaggio personale, richiamo al trattamento precedente e incentivo leggero.</p>
-            <button>Prepara la campagna</button>
-          </div>
-        </section>
-
-        <section class="view" id="view-stock">
-          <div class="view-heading">
-            <small>MAGAZZINO</small>
-            <h1>Quello che finirà prima.</h1>
-            <p>Le scorte diventano una previsione, non un’emergenza.</p>
-          </div>
-          <div class="stock-board">
-            <article><div><strong>Siero viso</strong><small>7 giorni residui</small></div><i style="--w:78%"></i></article>
-            <article><div><strong>Gel laser</strong><small>4 giorni residui</small></div><i style="--w:92%"></i></article>
-            <article><div><strong>Crema corpo</strong><small>14 giorni residui</small></div><i style="--w:52%"></i></article>
-          </div>
-        </section>
-
-        <section class="view" id="view-insights">
-          <div class="view-heading">
-            <small>BUSINESS INTELLIGENCE</small>
-            <h1>Capire, prima di decidere.</h1>
-            <p>Daphne collega saturazione, ritorno clienti e valore medio.</p>
-          </div>
-          <div class="insight-board">
-            <svg viewBox="0 0 820 260" aria-label="Andamento">
-              <defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c96f78" stop-opacity=".25"/><stop offset="1" stop-color="#c96f78" stop-opacity="0"/></linearGradient></defs>
-              <path class="area" d="M0 214 C90 205,130 138,210 160 C285 181,330 94,405 119 C490 146,525 76,612 89 C690 101,735 45,820 36 L820 260 L0 260Z"/>
-              <path class="line" d="M0 214 C90 205,130 138,210 160 C285 181,330 94,405 119 C490 146,525 76,612 89 C690 101,735 45,820 36"/>
-            </svg>
-            <div class="insight-kpis"><span><strong>+18,4%</strong><small>fatturato</small></span><span><strong>+11%</strong><small>ritorno clienti</small></span><span><strong>82%</strong><small>occupazione</small></span></div>
-          </div>
-        </section>
-      </div>
-
-      <div class="ask-bar" id="ask-bar">
-        <div class="ask-copy">
-          <small id="ask-state">DAPHNE È PRONTA</small>
-          <strong id="ask-message">Raccontami come lavori e proverò a capire se posso aiutarti.</strong>
         </div>
-        <form id="ask-form">
-          <input id="ask-input" maxlength="500" placeholder="Scrivi qui…">
-          <button type="submit">Invia <span>→</span></button>
-        </form>
-        <div class="quick" id="quick">
-          <button data-prompt="Ho 4 cabine e 6 collaboratrici.">4 cabine e 6 collaboratrici</button>
-          <button data-prompt="Le clienti non tornano.">Le clienti non tornano</button>
-          <button data-prompt="Voglio aumentare il fatturato.">Aumentare il fatturato</button>
-        </div>
+
+        <section class="conversation-gate" id="conversation-gate">
+          <div>
+            <small>ADESSO TOCCA A TE</small>
+            <h2>Raccontami il tuo centro.</h2>
+            <p>Non voglio mostrarti un software generico. Voglio capire se AESTRA può aiutarti davvero.</p>
+          </div>
+
+          <form id="conversation-form">
+            <input id="conversation-input" maxlength="500" autocomplete="off" placeholder="Inizia da dove preferisci…">
+            <button type="submit">Continua <span>→</span></button>
+          </form>
+
+          <div class="quick-prompts" id="quick-prompts">
+            <button data-prompt="Ho 4 cabine e 6 collaboratrici.">4 cabine e 6 collaboratrici</button>
+            <button data-prompt="Le clienti non tornano.">Le clienti non tornano</button>
+            <button data-prompt="Voglio aumentare il fatturato.">Aumentare il fatturato</button>
+          </div>
+        </section>
       </div>
     </section>
   </main>
-  <script src="js/live.js"></script>
+
+  <script src="js/experience.js"></script>
 </body>
 </html>

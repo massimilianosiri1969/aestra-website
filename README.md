@@ -1,10 +1,7 @@
-# AESTRA Experience V3 — Interactive Slow
+# AESTRA Experience V3.1 — Daphne Fixed
 
-Correzioni:
-- volto corretto di Daphne;
-- Daphne sempre visibile;
-- interazione disponibile immediatamente;
-- sequenza rallentata a 11 secondi per scena;
-- pulsanti Pausa, Riprendi, Avanti e Indietro;
-- clic manuale sui moduli;
-- la conversazione interrompe automaticamente la demo.
+Correzione verificata:
+- sostituito il ritaglio errato;
+- usato il volto corretto di Daphne già presente negli asset AESTRA;
+- regolato il posizionamento desktop, tablet e mobile;
+- interazione e sequenza lenta della V3 restano invariate.

@@ -39,3 +39,6 @@
 @media(max-width:720px){
   .portrait img{right:-18%;height:94%}
 }
+
+@media(max-width:720px){.experience{min-height:100dvh;height:auto;overflow:visible}.stage{min-height:0}.daphne-stage{min-height:650px;padding-bottom:180px}.dialogue h1{font-size:clamp(38px,11vw,52px)}.dialogue p{font-size:clamp(19px,5.5vw,24px);line-height:1.3}.conversation{bottom:102px;flex-wrap:wrap}.conversation input{min-width:0;flex-basis:100%;font-size:16px}.conversation button{font-size:13px;min-height:44px;width:100%}.sequence-controls{bottom:20px}.software-stage{min-height:690px}.module-nav button{font-size:12px;white-space:nowrap;min-height:40px}.software-head h2{font-size:clamp(24px,7vw,32px)}.software-head>span{display:none}.agenda-board{overflow-x:auto}.insight-note{right:16px;left:16px;bottom:16px}}
+@media(prefers-reduced-motion:reduce){.module-view,.progress i{transition:none!important}.module-view.active .chart-line{animation:none;stroke-dashoffset:0}}

@@ -106,33 +106,27 @@ function replyFor(text){
   return "Ti ascolto. Dimmi quante cabine avete e qual è oggi il problema che ti pesa di più.";
 }
 
-form.addEventListener("submit",event=>{
-  event.preventDefault();
-  const value=input.value.trim();
-  if(!value)return;
-
-  paused=true;
-  pauseButton.textContent="Riprendi";
-  clearTimeout(timer);
-
-  const target=moduleFor(value);
-  const index=scenes.findIndex(s=>s.id===target);
-  renderScene(index,false);
-
-  daphneState.textContent="DAPHNE STA PENSANDO";
-  daphneTitle.textContent="Fammi collegare quello che mi hai detto.";
-  daphneCopy.textContent="Sto costruendo una prima lettura del tuo centro.";
-  analysisStatus.textContent="Prima lettura in corso";
-  input.value="";
-
-  setTimeout(()=>{
-    daphneState.textContent="PRIMA LETTURA";
-    daphneTitle.textContent=replyFor(value);
-    daphneCopy.textContent="Sul sito posso mostrarti il metodo. Dentro AESTRA lavorerei sui dati reali.";
-    analysisStatus.textContent="Prima lettura pronta";
-  },2200);
+const chatHistory=[];let chatTurn=0;let chatProfile={};let sending=false;
+form.addEventListener("submit",async event=>{
+ event.preventDefault();if(sending)return;
+ const value=input.value.trim();if(!value)return;
+ sending=true;paused=true;pauseButton.textContent="Riprendi";clearTimeout(timer);
+ input.value="";const submit=form.querySelector('button[type="submit"]');submit.disabled=true;
+ daphneState.textContent="DAPHNE TI ASCOLTA";daphneTitle.textContent="Sto ascoltando.";daphneCopy.textContent="Un momento, preparo una risposta per il tuo centro.";
+ try{
+  const res=await fetch("/api/daphne",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:value,messages:chatHistory.slice(-10),profile:chatProfile,turn:++chatTurn,maxTurns:10})});
+  const data=await res.json();if(!res.ok)throw new Error(data.error||"Servizio temporaneamente non disponibile");
+  chatHistory.push({role:"user",content:value},{role:"assistant",content:data.answer});
+  chatProfile=data.profile||chatProfile;
+  daphneState.textContent="DAPHNE · DIGITAL AESTRA SPECIALIST";
+  daphneTitle.textContent=data.endConversation?"Continuiamo insieme.":"Ti rispondo.";
+  daphneCopy.textContent=data.answer;
+  analysisStatus.textContent="Risposta personalizzata";
+  if(data.conversion?.show){const note=document.querySelector(".insight-note");if(note){note.querySelector("small").textContent="SCOPRI AESTRA";note.querySelector("strong").textContent=data.conversion.title||"Prenota una demo";}}
+  if(data.endConversation){input.disabled=true;submit.disabled=true;input.placeholder="La conversazione dimostrativa è conclusa.";}
+ }catch(err){daphneState.textContent="CONNESSIONE";daphneTitle.textContent="Riproviamo?";daphneCopy.textContent=err.message||"La connessione non è disponibile.";}
+ finally{sending=false;if(!input.disabled)submit.disabled=false;}
 });
-
 quick.addEventListener("click",event=>{
   const button=event.target.closest("[data-prompt]");
   if(!button)return;

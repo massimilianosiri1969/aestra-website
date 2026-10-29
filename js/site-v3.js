@@ -1,13 +1,16 @@
-document.querySelector('.menu-toggle')?.addEventListener('click',()=>document.querySelector('.main-links')?.classList.toggle('open'));document.getElementById('demo-form')?.addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.currentTarget);const subject=encodeURIComponent('Richiesta demo AESTRA — '+(f.get('center')||''));const body=encodeURIComponent(`Nome: ${f.get('name')}
-Centro: ${f.get('center')}
-Email: ${f.get('email')}
-Telefono: ${f.get('phone')}
-Cabine: ${f.get('cabins')}
-Team: ${f.get('team')}
-Priorità: ${f.get('priority')}
-
-Note:
-${f.get('notes')}`);document.getElementById('form-feedback').textContent='La richiesta è pronta: si aprirà il tuo programma email.';window.location.href=`mailto:demo@aestra.it?subject=${subject}&body=${body}`;});
+document.querySelector('.menu-toggle')?.addEventListener('click',()=>document.querySelector('.main-links')?.classList.toggle('open'));document.getElementById('demo-form')?.addEventListener('submit',async e=>{
+ e.preventDefault();const form=e.currentTarget,button=form.querySelector('button[type="submit"]'),feedback=document.getElementById('form-feedback');
+ if(!form.reportValidity())return;
+ button.disabled=true;feedback.textContent='Invio della richiesta in corso…';
+ const payload=Object.fromEntries(new FormData(form).entries());
+ try{
+  const response=await fetch('/api/demo',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  const data=await response.json();
+  if(!response.ok)throw new Error(data.error||'Invio non riuscito');
+  feedback.textContent='Richiesta ricevuta. Ti contatteremo per organizzare la demo.';form.reset();
+ }catch(error){feedback.textContent=error.message||'Invio non riuscito. Riprova.'}
+ finally{button.disabled=false}
+});
 const heroMessage = document.getElementById("hero-daphne-message");
 if (heroMessage) {
   const messages = [

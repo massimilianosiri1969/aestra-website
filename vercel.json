@@ -3,7 +3,7 @@
   "cleanUrls": true,
   "functions": {
     "api/daphne.js": {
-      "maxDuration": 30
+      "maxDuration": 60
     }
   }
 }
